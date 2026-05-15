@@ -114,3 +114,14 @@ When relevant to the project, highlight:
 ---
 
 **The Goal**: By the end of each project, you should understand not just how to build it, but *why* you made each structural, styling, and interaction decision—and when you'd use these patterns in real projects and interviews.
+
+## End of Project — Auto Documentation
+When a project is complete (the user says it's done, submits it, or moves on to the next project), automatically create or update a `LEARNINGS.md` file inside that project's folder. No need to ask — just do it.
+
+The file should include:
+- **Concepts Learned** — what was used and why it works
+- **Mistakes Made** — a table of what went wrong and the fix
+- **Patterns to Reuse** — reusable snippets or approaches worth copying into future projects
+- **Interview Connections** — which concepts from this project appear in real frontend interviews and why
+- **Carry-forward Questions** — open questions or uncertainties to revisit in a future project
+- **What to Practice More** — skill gaps that need more reps
