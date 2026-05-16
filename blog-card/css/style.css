@@ -1,22 +1,22 @@
 /* Put any custom CSS styles here.  */
 /* Be sure to delete the <style> tag in index.html if you want to use this stylesheet. */
-body {
+
+* {
+  box-sizing: border-box;
   margin: 0;
+}
+
+body {
   font-family: "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
   min-height: 100vh;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  background: linear-gradient(to bottom, #f9fafb, #d2d6db);
+  background: linear-gradient(147.52deg, #f9fafb 8.89%, #d2d6db 100.48%);
   padding-left: 17.5px;
   padding-right: 17.5px;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 .credits {
@@ -32,48 +32,48 @@ body {
   color: #000;
   font-weight: bold;
 }
+
 .card {
-  max-width: 340px;
   width: 100%;
+  max-width: 340px;
   border-radius: 8px;
   box-shadow: 0px 1px 3px rgba(0,0,0,0.1), 0px 1px 2px rgba(0,0,0,0.06);
-  overflow: hidden;   
+  overflow: hidden;
   background: white;
-  margin: 80px auto 0 auto;
+  margin: 120px auto 0 auto;
 }
+
 .image {
   width: 100%;
   height: 288px;
   object-fit: cover;
+  display: block;
 }
+
 .card .content {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding: 24px 16px;
 }
 
 .card .content .chip {
-  align-self:  flex-start;
-  background-color: #f0fdf4; /* green-50 */
-  border: 1px solid #BBF7D0; /* green-200 */
-  color: #15803D;
+  align-self: flex-start;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 9999px
+  padding: 2px 8px;
+  border-radius: 9999px;
 }
 
 .card .content .info {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 24px;
 }
 
@@ -81,6 +81,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #525252;
 }
 
 .card .content h3 {
@@ -88,32 +91,44 @@ body {
   font-weight: 600;
   line-height: 28px;
   color: #171717;
-  margin: 0;
-}
-
-.card .content p {
-  font-size: 16px;
-  font-weight: 500;
-  color: #525252;
-  line-height: 24px;
-  margin: 0;
 }
 
 .cta button {
   background: none;
   border: none;
+  border-radius: 4px;
   padding: 0;
+  outline: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 6px;
-  color:#4338CA;
+  color: #4338ca;
   font-size: 16px;
-  font-weight: 500;                                                                                                                     
-  line-height: 24px;                                                                                                                  
+  font-weight: 500;
+  line-height: 24px;
   font-family: inherit;
-
+  min-width: 114px;
 }
+
+.cta button:focus,
 .cta button:hover {
-  color:#3730a3;
+  color: #3730a3;
+}
+
+.cta button:focus {
+  box-shadow:
+    0px 0px 0px 1px #444ce7,
+    0px 0px 0px 4px rgba(68, 76, 231, 0.12);
+}
+
+.cta button:disabled {
+  pointer-events: none;
+  color: #a3a3a3;
+}
+
+.cta button span {
+  flex: 1;
+  display: inline-flex;
+  padding: 0 2px;
 }
