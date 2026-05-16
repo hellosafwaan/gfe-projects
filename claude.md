@@ -125,3 +125,19 @@ The file should include:
 - **Interview Connections** — which concepts from this project appear in real frontend interviews and why
 - **Carry-forward Questions** — open questions or uncertainties to revisit in a future project
 - **What to Practice More** — skill gaps that need more reps
+
+## Running Notes — /notes folder
+A `notes/` folder lives at the root of this repo. It contains topic-based reference files that grow across all projects. After every project, update the relevant files with anything new that was learned. If a concept doesn't fit an existing file, create a new one.
+
+Current files:
+- `notes/css-layout.md` — flexbox, grid, centering, responsive width, media queries
+- `notes/css-box-model.md` — margin, padding, box-sizing, overflow, shorthand bug
+- `notes/css-typography.md` — font-size, weight, line-height, Figma tokens, colors
+- `notes/css-properties.md` — border-radius, object-fit, box-shadow, pseudo-classes, display
+- `notes/html-semantics.md` — when to use article/section/div, headings, buttons vs links
+
+Rules:
+- Update existing files when a concept already has a section — don't duplicate
+- Create a new file if a concept doesn't fit any existing topic (e.g. `css-animations.md`, `javascript-dom.md`)
+- Keep entries concise — code snippet + one-line explanation is enough
+- No need to ask — just update after each project completes
