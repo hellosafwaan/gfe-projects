@@ -47,13 +47,15 @@ A blog card with a cover image, category badge, title, description, and a "Read 
 ### Resetting browser default margins
 - `<h3>` and `<p>` have default top/bottom margins from the user agent stylesheet
 - When using flexbox `gap`, these default margins stack on top of the gap — causing double spacing
-- Fix: `margin: 0` on `h3` and `p` to wipe defaults, let `gap` control spacing entirely
-- Better approach: `* { margin: 0 }` globally resets all defaults upfront
+- Fix: `* { margin: 0 }` globally resets all defaults upfront — better than resetting per element
+- Also add `display: block` to images — browsers treat `<img>` as inline by default, which can cause a small gap below the image inside a container
 
 ### Pseudo-classes for interactive states
 - `:hover` — styles applied when the user hovers over the element
-- Used `button:hover { color: #3730a3 }` to darken the button on hover
-- Important for accessibility and visual feedback
+- `:focus` — styles applied when the element is keyboard-focused; essential for accessibility
+- `:disabled` — styles applied when a button is disabled; use `pointer-events: none` to block clicks
+- Used all three on the button: hover darkens the colour, focus shows a ring shadow, disabled greys it out
+- Always pair `:hover` and `:focus` together — mouse users trigger hover, keyboard users trigger focus
 
 ### When NOT to use media queries
 - Media queries are for when the layout itself changes (columns, visibility, structure)
@@ -110,6 +112,7 @@ background-color: <bg-color>;
 background: none;
 border: none;
 padding: 0;
+outline: none;
 cursor: pointer;
 font-family: inherit;
 
@@ -117,6 +120,14 @@ font-family: inherit;
 display: flex;
 align-items: center;
 gap: 6px;
+min-width: 114px;
+
+/* Button states */
+button:hover { color: #3730a3; }
+button:focus {
+  box-shadow: 0px 0px 0px 1px #444ce7, 0px 0px 0px 4px rgba(68,76,231,0.12);
+}
+button:disabled { pointer-events: none; color: #a3a3a3; }
 
 /* Reset browser defaults globally */
 * { margin: 0; box-sizing: border-box; }
@@ -147,7 +158,7 @@ gap: 6px;
 ## What to Practice More
 
 - **Nested flex layouts** — used two levels of nesting here; practice more complex multi-level layouts
-- **Pseudo-classes** — only used `:hover`; practice `:focus`, `:active`, `:disabled`, `:nth-child`
+- **Pseudo-classes** — used `:hover`, `:focus`, `:disabled`; still need to practice `:active` and `:nth-child`
 - **Global CSS resets** — get into the habit of `* { margin: 0; box-sizing: border-box }` from the start
 - **`overflow` property** — understand all its values (`hidden`, `scroll`, `auto`, `clip`) and side effects
 - **Reading Figma tokens faster** — still taking time to map token names to CSS values

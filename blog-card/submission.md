@@ -46,7 +46,7 @@ The source image is 640×640px. The card needs 340×288px. `object-fit: cover` s
 
 **The button**
 
-Browsers give `<button>` a grey background, a border, padding, and a system font. All of it stripped: `background: none`, `border: none`, `padding: 0`, `font-family: inherit`. The text and SVG arrow sit side by side using flexbox. The SVG uses `fill="currentColor"` — so the hover state changes both text and icon colour with a single CSS rule.
+Browsers give `<button>` a grey background, a border, padding, and a system font. All of it stripped: `background: none`, `border: none`, `padding: 0`, `font-family: inherit`. The text and SVG arrow sit side by side using flexbox. The SVG uses `fill="currentColor"` — so the hover state changes both text and icon colour with a single CSS rule. Three interactive states are covered: `:hover` darkens the colour, `:focus` shows a ring shadow for keyboard users, and `:disabled` greys it out and blocks pointer events.
 
 **Responsive without media queries**
 
@@ -77,6 +77,6 @@ Browsers don't pass font down to `<button>` elements. Easy to forget, immediatel
 
 - I used `overflow: hidden` on the card to clip image corners rather than `border-radius` on the image. Does this cause issues in production — e.g. tooltips or dropdowns positioned relative to the card getting clipped?
 
-- I reset margins per element (`h3 { margin: 0 }`) rather than globally (`* { margin: 0 }`). Is there a meaningful difference for a component-scoped stylesheet, or is the global reset always the safer habit?
+- Used `* { margin: 0; box-sizing: border-box }` as a global reset rather than zeroing margins per element. Is there any downside to this approach — e.g. third-party components or embedded content getting their margins unexpectedly reset?
 
 - The "Read more" is a `<button>` stripped of all defaults. In a purely visual component like this with no form or action wired up, is `<button>` still the right semantic choice — or would an `<a>` tag be more appropriate if it's intended to navigate somewhere?
