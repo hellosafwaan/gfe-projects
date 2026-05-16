@@ -126,6 +126,23 @@ The file should include:
 - **Carry-forward Questions** — open questions or uncertainties to revisit in a future project
 - **What to Practice More** — skill gaps that need more reps
 
+## End of Project — Auto Submission File
+At the end of every project, also create a `submission.md` inside the project folder. No need to ask — just do it alongside LEARNINGS.md.
+
+The file should include these four sections in this exact order:
+
+**Title** — A short, catchy one-liner. Lead with something that hooks the reader, not just the project name.
+
+**Summary** — Max 160 characters. Punchy and specific — mention the key techniques used, not just "built a card with HTML and CSS."
+
+**Tech stack and approach** — How you built it and why. Focus on the interesting decisions: layout strategy, a tricky problem and how it was solved, non-obvious property choices. Write it like you're explaining to a peer, not listing steps. Max ~1500 words.
+
+**Useful resources and lessons learnt** — 4–6 bullet points. Each one is a concrete takeaway — a pattern, a gotcha, a property behaviour worth remembering.
+
+**Notes/questions for community** — 2–3 honest questions about decisions that could have gone another way. Shows thoughtfulness and invites useful feedback.
+
+---
+
 ## Running Notes — /notes folder
 A `notes/` folder lives at the root of this repo. It contains topic-based reference files that grow across all projects. After every project, update the relevant files with anything new that was learned. If a concept doesn't fit an existing file, create a new one.
 
