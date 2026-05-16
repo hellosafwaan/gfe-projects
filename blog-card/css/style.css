@@ -11,6 +11,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   background: linear-gradient(to bottom, #f9fafb, #d2d6db);
+  padding-left: 17.5px;
+  padding-right: 17.5px;
 }
 
 * {
@@ -32,8 +34,10 @@ body {
 }
 .card {
   max-width: 340px;
+  width: 100%;
   border-radius: 8px;
-  box-shadow: 0px 1px 3px rgba(0,0,0,0.1), 0px 1px 2px rgba(0,0,0,0.06);   
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.1), 0px 1px 2px rgba(0,0,0,0.06);
+  overflow: hidden;   
   background: white;
   margin: 80px auto 0 auto;
 }
@@ -41,9 +45,11 @@ body {
   width: 100%;
   height: 288px;
   object-fit: cover;
-  border-radius: 8px 8px 0px 0px;
 }
 .card .content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   padding-left: 16px;
   padding-right: 16px;
   padding-top: 24px;
@@ -51,7 +57,7 @@ body {
 }
 
 .card .content .chip {
-  display: inline-block;
+  align-self:  flex-start;
   background-color: #f0fdf4; /* green-50 */
   border: 1px solid #BBF7D0; /* green-200 */
   color: #15803D;
@@ -65,13 +71,24 @@ body {
   border-radius: 9999px
 }
 
+.card .content .info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card .content .title-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .card .content h3 {
   font-size: 18px;
   font-weight: 600;
   line-height: 28px;
   color: #171717;
-  margin-top: 8px;
-  margin-bottom: 0px;
+  margin: 0;
 }
 
 .card .content p {
@@ -79,7 +96,7 @@ body {
   font-weight: 500;
   color: #525252;
   line-height: 24px;
-  margin-top: 12px;
+  margin: 0;
 }
 
 .cta button {
@@ -95,6 +112,8 @@ body {
   font-weight: 500;                                                                                                                     
   line-height: 24px;                                                                                                                  
   font-family: inherit;
-  margin-top: 24px;  
 
+}
+.cta button:hover {
+  color:#3730a3;
 }
