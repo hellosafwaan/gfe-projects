@@ -135,11 +135,16 @@ The file should include these four sections in this exact order:
 
 **Summary** — Max 160 characters. Punchy and specific — mention the key techniques used, not just "built a card with HTML and CSS."
 
-**Tech stack and approach** — How you built it and why. Focus on the interesting decisions: layout strategy, a tricky problem and how it was solved, non-obvious property choices. Write it like you're explaining to a peer, not listing steps. Max ~1500 words.
+The Implementation Details section has three subsections with these exact headings (as used on the GFE platform):
 
-**Useful resources and lessons learnt** — 4–6 bullet points. Each one is a concrete takeaway — a pattern, a gotcha, a property behaviour worth remembering.
+**Tech stack and approach**
+How you built it and why. Focus on the interesting decisions: layout strategy, a tricky problem and how it was solved, non-obvious property choices. Write it like you're explaining to a peer, not listing steps. Max ~1500 words.
 
-**Notes/questions for community** — 2–3 honest questions about decisions that could have gone another way. Shows thoughtfulness and invites useful feedback.
+**Useful resources and lessons learnt**
+4–6 bullet points. Each one is a concrete takeaway — a pattern, a gotcha, a property behaviour worth remembering.
+
+**Notes/questions for community**
+2–3 honest questions about decisions that could have gone another way. Shows thoughtfulness and invites useful feedback.
 
 ---
 
