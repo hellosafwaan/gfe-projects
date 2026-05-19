@@ -73,3 +73,48 @@ Empty `alt=""` tells screen readers to skip the image entirely (correct for deco
 ```
 
 Never use `<div>` or `<span>` as a button — you lose keyboard navigation and accessibility for free.
+
+---
+
+## BEM Naming Convention
+
+Block Element Modifier — a pattern for self-documenting, scope-independent class names.
+
+```
+block                    → the component
+block__element           → a part inside the component
+block__element--modifier → a variant or state
+```
+
+```html
+<article class="profile-card">
+  <img class="profile-card__image" />
+  <h3 class="profile-card__name">Sarah Dole</h3>
+  <button class="profile-card__cta profile-card__cta--primary">Contact</button>
+</article>
+```
+
+Why BEM over nested selectors:
+- `.profile-card__image` works anywhere in the DOM — not tied to a parent
+- No specificity conflicts — each class is flat and unique
+- Self-documenting — the class name tells you what block it belongs to
+
+---
+
+## Inline SVG Pattern
+
+Embed SVGs directly in HTML for CSS colour control.
+
+```html
+<a href="https://github.com/..." aria-label="Link to GitHub profile">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M..." fill="currentColor" />
+  </svg>
+</a>
+```
+
+- `fill="none"` on `<svg>` — no fill on the canvas
+- `fill="currentColor"` on `<path>` — colour inherits from CSS `color`
+- `aria-label` on `<a>` — required when the link has no visible text
+
+Always use `aria-label` on icon-only links — screen readers need to know where the link goes.

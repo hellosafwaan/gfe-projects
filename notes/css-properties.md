@@ -98,7 +98,62 @@ button {
   background: none;
   border: none;
   padding: 0;
+  outline: none;
   cursor: pointer;
   font-family: inherit;  /* buttons don't inherit font by default */
 }
 ```
+
+---
+
+## fill="currentColor" on SVGs
+
+Makes the SVG icon colour inherit from the CSS `color` property on the parent element.
+
+```html
+<svg fill="none">              <!-- canvas — no fill -->
+  <path fill="currentColor" /> <!-- drawing — inherits from CSS color -->
+</svg>
+```
+
+```css
+a { color: #4338ca; }
+a:hover { color: #3730a3; }  /* icon changes colour automatically */
+```
+
+Use `fill="none"` on `<svg>` and `fill="currentColor"` on `<path>`. One CSS rule controls icon colour, hover, disabled states, and theming.
+
+---
+
+## text-align vs align-items
+
+Two properties often confused when centering content:
+
+```css
+/* Centers child ELEMENTS inside a flex container */
+.parent { display: flex; flex-direction: column; align-items: center; }
+
+/* Centers TEXT within an element */
+.child { text-align: center; }
+```
+
+- `align-items: center` → the element itself is centered in the flex container
+- `text-align: center` → the text inside the element is centered
+
+You often need both: `align-items` for layout, `text-align` for typography.
+
+`text-align` is inherited — set it on a parent and all text children pick it up automatically.
+
+---
+
+## display: flex on inline elements
+
+`<a>` and `<span>` are inline by default. Inline elements sit on a text baseline — browsers reserve a small gap below for descenders (letters like g, p, y). This creates phantom extra height even with no text.
+
+```css
+a {
+  display: flex;  /* removes baseline gap, height matches content exactly */
+}
+```
+
+Use this whenever an `<a>` contains only an icon (SVG) and the height looks wrong.
