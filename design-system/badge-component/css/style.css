@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  font-family: "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding-top: 200px;
+}
+
+.badges {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  width: 240px;
+}
+
+.badges__row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+
+.badge {
+  display: inline-flex;
+  font-family: inherit;
+  font-weight: 400;
+  border-radius: 9999px;
+  border: 1px solid;
+}
+
+/* Badge Sizes */
+
+.badge--sm {
+  font-size: 12px;
+  line-height: 16px;
+  padding: 1px 5px;
+}
+
+.badge--md {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 1px 7px;
+}
+
+.badge--lg {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 3px 9px;
+}
+
+.badge--neutral {
+  background: #f9fafb;
+  border-color: #e5e5e5;
+  color: #525252;
+}
+
+.badge--error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
+}
+
+.badge--warning {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #b45309;
+}
+.badge--success {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #15803d;
+}
+
+.badge--brand {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  color: #4338ca;
+}
+
+.credits {
+  color: #777;
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  font-size: 11px;
+  text-align: center;
+}
+
+.credits a {
+  color: #000;
+  font-weight: bold;
+}
