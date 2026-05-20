@@ -131,6 +131,22 @@ Use `fill="none"` on `<svg>` and `fill="currentColor"` on `<path>`. One CSS rule
 
 ---
 
+## flex vs inline-flex
+
+```css
+display: flex;        /* block-level container — takes full width, breaks onto new line */
+display: inline-flex; /* inline container — sizes to content, flows with surrounding content */
+```
+
+Use `inline-flex` for components that live inside other content: badges, tags, chips, icon buttons.
+Use `flex` for layout containers: rows, columns, page sections.
+
+The children behave identically in both — only the outer element's relationship to its siblings changes.
+
+**Needs more practice** — revisit until instinctive.
+
+---
+
 ## gap vs column-gap
 
 ```css
