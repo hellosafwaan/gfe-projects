@@ -83,6 +83,37 @@ Check DevTools → Computed tab to see what the browser is adding.
 
 ---
 
+## Padding sets height naturally
+
+Never set `height` explicitly on buttons (or most interactive elements). Instead, let padding do it:
+
+```css
+/* height = padding-top + line-height + padding-bottom */
+.btn--md  { padding: 10px 16px; font-size: 14px; } /* → ~40px tall */
+.btn--lg  { padding: 10px 18px; font-size: 16px; } /* → ~44px tall */
+.btn--xl  { padding: 12px 20px; font-size: 16px; } /* → ~48px tall */
+.btn--2xl { padding: 16px 28px; font-size: 18px; } /* → ~60px tall */
+```
+
+Why not `height: 40px`? Because if the font or line-height changes, a fixed height clips or misaligns the text. Padding always stays proportional.
+
+---
+
+## Border compensation pattern
+
+When a bordered element needs to match the height of an un-bordered sibling, reduce padding by the border-width on each side:
+
+```css
+/* Primary: padding: 10px 14px → height = 10 + 20 + 10 = 40px */
+/* Secondary must match: border eats 1px top + 1px bottom */
+.btn--secondary { border: 1px solid; }
+.btn--secondary.btn--md { padding: 9px 13px; } /* 10 - 1 = 9 */
+```
+
+`box-sizing: border-box` does NOT help here — it only absorbs border into declared width/height. When height is auto (driven by padding), border still adds on top.
+
+---
+
 ## overflow
 
 Controls what happens when content exceeds the element's box.

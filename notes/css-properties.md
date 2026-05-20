@@ -100,9 +100,15 @@ button {
   padding: 0;
   outline: none;
   cursor: pointer;
-  font-family: inherit;  /* buttons don't inherit font by default */
+  font-family: inherit;
 }
 ```
+
+`<button>` is one of the few elements that doesn't automatically inherit `font-family` from its parent. Even if `body` has `font-family: "Noto Sans"`, the button ignores it and falls back to the browser default (usually Arial or Times New Roman).
+
+`font-family: inherit` tells the button: go look at your parent and use their font instead.
+
+Same applies to `font-size` in some browsers — `inherit` fixes both.
 
 ---
 
@@ -122,6 +128,30 @@ a:hover { color: #3730a3; }  /* icon changes colour automatically */
 ```
 
 Use `fill="none"` on `<svg>` and `fill="currentColor"` on `<path>`. One CSS rule controls icon colour, hover, disabled states, and theming.
+
+---
+
+## gap vs column-gap
+
+```css
+gap: 8px;        /* applies to both row gap AND column gap in flex */
+column-gap: 8px; /* applies only between items on the main axis */
+```
+
+Use `column-gap` for icon-to-text spacing inside a button — `gap` can interfere with wrapping behaviour when `flex-wrap: wrap` is active.
+
+---
+
+## -webkit-font-smoothing
+
+```css
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+```
+
+Makes fonts render thinner and crisper on Mac/Safari. Without it, text looks slightly bolder and blurrier. Always add to `body` on web projects — it's the standard baseline for design-matched font rendering.
 
 ---
 

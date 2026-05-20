@@ -99,6 +99,22 @@ Why BEM over nested selectors:
 - No specificity conflicts — each class is flat and unique
 - Self-documenting — the class name tells you what block it belongs to
 
+**Composing modifiers for multi-dimensional components**
+
+When a component varies across two independent dimensions (e.g. variant × size), use separate modifier classes — one per concern:
+
+```html
+<button class="btn btn--primary btn--md">Button</button>
+<button class="btn btn--secondary btn--xl">Button</button>
+<button class="btn btn--destructive btn--2xl">Button</button>
+```
+
+- `.btn` — shared base: border-radius, font-weight, display, cursor, gap
+- `.btn--primary` — variant: background-color, color, border
+- `.btn--md` — size: padding, font-size
+
+Adding a new variant or size is one new class, not 20.
+
 ---
 
 ## Inline SVG Pattern

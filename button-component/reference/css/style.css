@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family:
+    'Noto Sans',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 112px 24px;
+}
+
+.button__variants {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 300px;
+}
+
+.button__variants__sizes {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: 500;
+  border: none;
+  background: none;
+  outline: inherit;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+.button:focus {
+  box-shadow: 0px 0px 0px 4px rgba(68, 76, 231, 0.12);
+}
+
+/* Size classes */
+.button--size-md {
+  height: 40px;
+  column-gap: 6px;
+  padding: 10px 14px;
+
+  font-size: 14px;
+  line-height: 20px;
+}
+.button--secondary.button--size-md {
+  padding: 9px 13px;
+}
+
+.button--size-lg {
+  height: 44px;
+  column-gap: 8px;
+  padding: 10px 16px;
+
+  font-size: 16px;
+  line-height: 24px;
+}
+.button--secondary.button--size-lg {
+  padding: 9px 15px;
+}
+
+.button--size-xl {
+  height: 48px;
+  column-gap: 8px;
+  padding: 12px 20px;
+
+  font-size: 16px;
+  line-height: 24px;
+}
+.button--secondary.button--size-xl {
+  padding: 11px 19px;
+}
+
+.button--size-2xl {
+  height: 60px;
+  column-gap: 12px;
+  padding: 16px 24px;
+
+  font-size: 18px;
+  line-height: 28px;
+}
+.button--secondary.button--size-2xl {
+  padding: 15px 23px;
+}
+
+.button--link.button--size-md,
+.button--link.button--size-lg,
+.button--link.button--size-xl,
+.button--link.button--size-2xl {
+  padding: 0;
+  height: 100%;
+}
+
+.button--icon-size-md {
+  width: 40px;
+}
+.button--icon-size-lg {
+  width: 44px;
+}
+.button--icon-size-xl {
+  width: 48px;
+}
+.button--icon-size-2xl {
+  width: 56px;
+  height: 56px;
+}
+
+/* button variants */
+.button--primary {
+  background: #4338ca;
+  box-shadow:
+    0px 1px 3px rgba(0, 0, 0, 0.1),
+    0px 1px 2px rgba(0, 0, 0, 0.06);
+  color: #ffffff;
+}
+.button--primary:hover,
+.button--primary:focus {
+  background: #3730a3;
+}
+.button--primary:disabled,
+.button--secondary:disabled {
+  background: #f5f5f5;
+  box-shadow: none;
+  color: #a3a3a3;
+  pointer-events: none;
+}
+
+.button--secondary {
+  border: 0.5px solid #e6e6e6;
+  background: #ffffff;
+  box-shadow:
+    0px 1px 3px rgba(0, 0, 0, 0.1),
+    0px 1px 2px rgba(0, 0, 0, 0.06);
+  color: #171717;
+}
+.button--secondary:hover,
+.button--secondary:focus {
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  color: #0a0a0a;
+}
+.button--secondary:focus {
+  box-shadow: 0px 0px 0px 4px rgba(68, 76, 231, 0.12);
+}
+
+.button_tertiary {
+  color: #4338ca;
+}
+.button_tertiary:hover,
+.button_tertiary:focus {
+  background: #fafafa;
+}
+.button_tertiary:disabled,
+.button--danger:disabled {
+  background: none;
+  box-shadow: none;
+  color: #a3a3a3;
+  pointer-events: none;
+}
+
+.button--danger {
+  background: #dc2626;
+  color: #ffffff;
+}
+.button--danger:hover,
+.button--danger:focus {
+  background: #b91c1c;
+}
+.button--danger:focus {
+  box-shadow:
+    0px 0px 0px 1px #d92d20,
+    0px 0px 0px 4px rgba(217, 45, 32, 0.12);
+}
+
+.button--link {
+  color: #4338ca;
+}
+.button--link:hover,
+.button--link:focus {
+  color: #3730a3;
+}
+
+.button--link-gray {
+  color: #525252;
+}
+.button--link-gray:hover,
+.button--link-gray:focus {
+  color: #171717;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 0;
+  }
+  .button__variants {
+    width: auto;
+  }
+}
