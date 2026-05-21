@@ -180,8 +180,23 @@ closeBtn.addEventListener('click', () => menu.classList.remove('open'));
 ## Carry-forward Questions
 
 - When should you use `classList.toggle('open')` vs separate `.add` and `.remove` calls?
-- How do you trap focus inside the mobile menu for accessibility (tab key shouldn't escape to the page behind)?
 - How do you close the mobile menu when the user clicks outside of it?
+
+---
+
+## Unlearned Gap — Accessibility
+
+The following accessibility features were added to the navbar **by the coach, not by you**. You did not implement or learn them during this project. They are documented in `notes/accessibility.md` for when you're ready to learn them properly.
+
+**What was added:**
+- `aria-expanded` on the hamburger — announces open/closed state to screen readers
+- `aria-controls` — links the button to the element it controls
+- `role="dialog"` + `aria-modal="true"` on the mobile menu
+- Focus management — focus moves into the menu on open, returns to hamburger on close
+- Escape key closes the menu
+- Focus trap — Tab cycles only within the open menu, not to the page behind
+
+**Where to learn it:** `notes/accessibility.md`
 
 ---
 

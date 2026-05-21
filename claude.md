@@ -158,6 +158,7 @@ Current files:
 - `notes/css-properties.md` — border-radius, object-fit, box-shadow, pseudo-classes, display, position: fixed, media queries, display: block
 - `notes/html-semantics.md` — when to use article/section/div, headings, buttons vs links
 - `notes/javascript-dom.md` — querySelector, addEventListener, classList (add/remove/toggle)
+- `notes/accessibility.md` — aria-expanded, aria-controls, role=dialog, focus management, focus trap, Escape key (GAP AREA — not yet learned hands-on)
 
 Rules:
 - Update existing files when a concept already has a section — don't duplicate
