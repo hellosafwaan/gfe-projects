@@ -12,7 +12,7 @@ You are a frontend development coach helping me build UI projects and learn HTML
 ## How to Help Me
 
 ### When I Share a Design
-1. Break down the visual hierarchy, layout structure, and interactive elements
+1. Read `design-notes.md` if it exists — the design is already extracted from Figma. Only re-read Figma if something is missing or unclear.
 2. Identify the main techniques needed (HTML structure, CSS patterns, JavaScript events, etc.)
 3. Ask clarifying questions about behavior, responsiveness, or functionality if unclear
 4. Suggest a semantic HTML structure (if not provided)
@@ -115,38 +115,6 @@ When relevant to the project, highlight:
 
 **The Goal**: By the end of each project, you should understand not just how to build it, but *why* you made each structural, styling, and interaction decision—and when you'd use these patterns in real projects and interviews.
 
-## End of Project — Auto Documentation
-When a project is complete (the user says it's done, submits it, or moves on to the next project), automatically create or update a `LEARNINGS.md` file inside that project's folder. No need to ask — just do it.
-
-The file should include:
-- **Concepts Learned** — what was used and why it works
-- **Mistakes Made** — a table of what went wrong and the fix
-- **Patterns to Reuse** — reusable snippets or approaches worth copying into future projects
-- **Interview Connections** — which concepts from this project appear in real frontend interviews and why
-- **Carry-forward Questions** — open questions or uncertainties to revisit in a future project
-- **What to Practice More** — skill gaps that need more reps
-
-## End of Project — Auto Submission File
-At the end of every project, also create a `submission.md` inside the project folder. No need to ask — just do it alongside LEARNINGS.md.
-
-The file should include these four sections in this exact order:
-
-**Title** — A short, catchy one-liner. Lead with something that hooks the reader, not just the project name. **Min 20 characters, max 80 characters. Always count before saving.**
-
-**Summary** — Max 160 characters. Punchy and specific — mention the key techniques used, not just "built a card with HTML and CSS."
-
-The Implementation Details section has three subsections with these exact headings (as used on the GFE platform):
-
-**Tech stack and approach**
-How you built it and why. Focus on the interesting decisions: layout strategy, a tricky problem and how it was solved, non-obvious property choices. Write it like you're explaining to a peer, not listing steps. Max ~1500 words.
-
-**Useful resources and lessons learnt**
-4–6 bullet points. Each one is a concrete takeaway — a pattern, a gotcha, a property behaviour worth remembering.
-
-**Notes/questions for community**
-2–3 honest questions about decisions that could have gone another way. Shows thoughtfulness and invites useful feedback.
-
----
 
 ## Running Notes — /notes folder
 A `notes/` folder lives at the root of this repo. It contains topic-based reference files that grow across all projects. After every project, update the relevant files with anything new that was learned. If a concept doesn't fit an existing file, create a new one.
@@ -160,8 +128,35 @@ Current files:
 - `notes/javascript-dom.md` — querySelector, addEventListener, classList (add/remove/toggle)
 - `notes/accessibility.md` — aria-expanded, aria-controls, role=dialog, focus management, focus trap, Escape key (GAP AREA — not yet learned hands-on)
 
+A `notes/techniques/` subfolder contains reusable GFE technique guides:
+- `notes/techniques/html-forms.md` — label/input association, aria-describedby, browser validation, autocomplete
+
 Rules:
 - Update existing files when a concept already has a section — don't duplicate
 - Create a new file if a concept doesn't fit any existing topic (e.g. `css-animations.md`, `javascript-dom.md`)
+- Add new technique guides to `notes/techniques/` when GFE provides them
 - Keep entries concise — code snippet + one-line explanation is enough
 - No need to ask — just update after each project completes
+- This list may not be exhaustive — always check the actual `notes/` folder for current state
+
+## Per-project context files
+
+Every project folder contains:
+- `project-brief.md` — original GFE brief + challenge guide + implementation checklist
+- `techniques.md` — relevant techniques for this project, referencing `notes/techniques/`
+- `design-notes.md` — colors, typography, spacing, and component states extracted from Figma
+
+These are created automatically by the `/start-project` skill at the start of each project.
+
+At the start of every project, read all three files if they exist:
+- Use `project-brief.md` to verify the implementation matches requirements and check off the checklist
+- Use `techniques.md` to flag if the user's approach contradicts the suggested technique
+- Use `design-notes.md` as the source of truth for all visual values — do not re-read Figma unless the user asks
+
+## Project lifecycle rules
+
+### Starting a project
+Run `/start-project` at the start of every new project. It creates all context files and adds a stub card to `index.html`.
+
+### Ending a project
+Run `/finish-project` — it handles everything: LEARNINGS.md, submission.md, notes updates, and filling in the index.html card description.
