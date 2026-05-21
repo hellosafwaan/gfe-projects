@@ -202,4 +202,61 @@ a {
 }
 ```
 
-Use this whenever an `<a>` contains only an icon (SVG) and the height looks wrong.
+Use this whenever an `<a>` contains only an icon (SVG) or image and the height looks wrong. This applies to logo links too — not just icon buttons.
+
+**Missed this twice:** Applied it in the badge project for icon-only links, then forgot it again in the navbar project for the logo `<a>` wrapping an `<img>`. The trigger is simple: any `<a>` wrapping only visual content (SVG or image, no text) needs `display: flex`.
+
+---
+
+## position: fixed
+
+Removes an element from document flow and pins it to the viewport. Setting all four sides to `0` makes it full-screen.
+
+```css
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+```
+
+Use for: mobile menus, modals, toasts, sticky headers that need to sit above all other content. Pair with `z-index` if other elements on the page have a positive z-index.
+
+---
+
+## Media queries
+
+Apply CSS conditionally based on screen width. Mobile-first uses `min-width` — write defaults for mobile, add overrides for larger screens.
+
+```css
+/* Mobile default */
+.element { display: none; }
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .element { display: flex; }
+}
+```
+
+Common breakpoints:
+- Mobile: < 768px (default)
+- Tablet: 768px
+- Desktop: 1024px or 1440px
+
+Always prefer `min-width` (mobile-first) over `max-width` (desktop-first).
+
+---
+
+## display: block on inline elements
+
+`<a>` is inline by default — it only takes up as much width as its text content. `display: block` makes it stretch to fill the parent's full width.
+
+```css
+.mobile-menu__link {
+  display: block; /* full width, not just text width */
+}
+```
+
+Use whenever you want a link to be a full-width tap target — common in mobile menus and sidebars.

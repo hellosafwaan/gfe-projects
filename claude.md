@@ -131,7 +131,7 @@ At the end of every project, also create a `submission.md` inside the project fo
 
 The file should include these four sections in this exact order:
 
-**Title** — A short, catchy one-liner. Lead with something that hooks the reader, not just the project name.
+**Title** — A short, catchy one-liner. Lead with something that hooks the reader, not just the project name. **Min 20 characters, max 80 characters. Always count before saving.**
 
 **Summary** — Max 160 characters. Punchy and specific — mention the key techniques used, not just "built a card with HTML and CSS."
 
@@ -155,8 +155,9 @@ Current files:
 - `notes/css-layout.md` — flexbox, grid, centering, responsive width, media queries
 - `notes/css-box-model.md` — margin, padding, box-sizing, overflow, shorthand bug
 - `notes/css-typography.md` — font-size, weight, line-height, Figma tokens, colors
-- `notes/css-properties.md` — border-radius, object-fit, box-shadow, pseudo-classes, display
+- `notes/css-properties.md` — border-radius, object-fit, box-shadow, pseudo-classes, display, position: fixed, media queries, display: block
 - `notes/html-semantics.md` — when to use article/section/div, headings, buttons vs links
+- `notes/javascript-dom.md` — querySelector, addEventListener, classList (add/remove/toggle)
 
 Rules:
 - Update existing files when a concept already has a section — don't duplicate
