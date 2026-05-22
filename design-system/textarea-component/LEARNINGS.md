@@ -156,6 +156,12 @@ Use `closest()` instead of selecting the wrapper separately by ID.
 
 ---
 
+## Unresolved Pixel Drift Issue
+
+The GFE comparison tool showed a small vertical drift in placeholder text position on the error state. Root cause not fully identified — suspected the 5px height difference (103px vs 108px) between error and normal states causes the comparison tool to misalign elements slightly as it stacks components. This was also seen in the text-input-component project. Worth investigating in the next component project whether this is a GFE tool quirk or a genuine spacing issue.
+
+---
+
 ## Carry-forward Questions
 
 - How would the character counter work if the limit was configurable per-instance (not hardcoded to 500)?
