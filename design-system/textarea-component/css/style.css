@@ -94,6 +94,10 @@ body {
   color: #737373;
 }
 
+.textarea-group--error .textarea-group__input {
+  height: 103px;
+}
+
 .textarea-group--error .textarea-group__input,
 .textarea-group--exceeded .textarea-group__input {
   border: 1px solid #fca5a5
