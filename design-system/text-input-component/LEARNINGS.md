@@ -1,118 +1,48 @@
-# Learnings — Text Input Component
-
-> Status: Complete
+# Text Input Component — Learnings
 
 ---
 
-## HTML
+## Concepts Learned
 
-### BEM naming
+### BEM naming (Block, Element, Modifier)
 
-Block → Element → Modifier pattern keeps class names predictable and scope-safe.
+Keeps class names predictable and scope-safe across complex components.
 
 ```html
-<div class="input-group input-group--error">       <!-- block + modifier -->
-  <label class="input-group__label">...</label>     <!-- element -->
-  <div class="input-group__field">                  <!-- element -->
-    <input class="input-group__input">              <!-- element -->
-    <div class="input-group__icon">...</div>        <!-- element -->
+<div class="input-group input-group--error">
+  <label class="input-group__label">...</label>
+  <div class="input-group__field">
+    <input class="input-group__input">
+    <div class="input-group__icon">...</div>
   </div>
-  <p class="input-group__hint">...</p>              <!-- element -->
+  <p class="input-group__hint">...</p>
 </div>
 ```
 
-Rules:
-- Double underscore (`__`) = child element of block
-- Double dash (`--`) = modifier (state or variant) on the block
-- Modifier goes on the **block**, not the element — `.input-group--error`, not `.input-group__icon--error`
-
-### `<label>` + `<input>` association
-
-Use `for` on label and matching `id` on input. Two benefits: screen readers describe the field, clicking the label focuses the input.
-
-```html
-<label for="input-error">Email</label>
-<input id="input-error" type="text" />
-```
-
-The id just needs to be unique on the page — descriptive names like `input-default`, `input-error` work fine.
-
-### `placeholder` attribute
-
-Goes directly on `<input>`, not in a separate element. No extra HTML needed.
-
-```html
-<input placeholder="name@email.com" type="text" />
-```
-
-Style it with `::placeholder` pseudo-element.
-
-### SVG icon colour via `currentColor`
-
-Set `fill="none"` on `<svg>` and `fill="currentColor"` on `<path>`. Then control colour with CSS `color` — change parent's `color` and the icon follows automatically.
-
-```html
-<svg fill="none" width="16" height="16">
-  <path d="..." fill="currentColor" />
-</svg>
-```
-
-```css
-.input-group__icon { color: #a3a3a3; }
-.input-group--error .input-group__icon { color: #dc2626; }
-```
-
----
-
-## CSS
-
-### BEM modifier descendant selector
-
-Space between modifier and element = descendant. No space = same element with both classes (wrong).
-
-```css
-/* Correct — error modifier on block affects icon inside it */
-.input-group--error .input-group__icon { color: #dc2626; }
-
-/* Wrong — would require the same element to have both classes */
-.input-group--error.input-group__icon { ... }
-```
-
-### `width: 100%` on form elements
-
-`<input>` and `<button>` do NOT stretch to fill their parent automatically unlike block-level `<div>`. Always add `width: 100%` explicitly.
-
-```css
-.input-group__input {
-  width: 100%;
-}
-```
+- `__` = child element of block
+- `--` = modifier (state or variant) on the **block**, not the element
+- Descendant selector: `.block--modifier .block__element` (space = descendant; no space = same element with both classes)
 
 ### Absolute icon inside relative field
 
-The icon-inside-input trick: make the field container `position: relative`, then the icon `position: absolute`.
+`<input>` can't have children, so icons must be siblings in a wrapper.
 
 ```css
-.input-group__field {
-  position: relative; /* establishes coordinate context */
-}
-
+.input-group__field { position: relative; }
 .input-group__icon {
+  display: flex;
   position: absolute;
   right: 14px;
   top: 50%;
-  transform: translateY(-50%); /* vertically centres the icon */
+  transform: translateY(-50%);
 }
 ```
 
-`top: 50%` moves the icon's top edge to the midpoint. `translateY(-50%)` pulls it back up by half its own height, centering it perfectly. Without the transform, the icon sits below center.
+`top: 50%` moves the top edge to the midpoint. `translateY(-50%)` pulls it back up by half its own height. Without the transform, the icon sits below center.
 
-### `outline: none` on focused inputs
+### Custom focus ring with `box-shadow`
 
-Browsers add a default blue `outline` on focus. When implementing a custom focus ring with `box-shadow`, you must:
-1. Remove the default: `outline: none`
-2. Also remove the border so it doesn't show through: `border-color: transparent`
-3. Then add your own via `box-shadow`
+`box-shadow` supports multiple layers and spread radius — `outline` doesn't.
 
 ```css
 .input-group__input:focus {
@@ -125,128 +55,135 @@ Browsers add a default blue `outline` on focus. When implementing a custom focus
 }
 ```
 
-**Why `box-shadow` not `outline`?** `box-shadow` supports multiple layers and a spread radius for the outer glow. `outline` doesn't.
-
-### Focus ring with `box-shadow` layers explained
-
-```css
-box-shadow:
-  0 0 0 1px #444ce7,                    /* inner ring — 1px solid ring */
-  0 0 0 4px rgba(68, 76, 231, 0.12),   /* outer glow — 4px semi-transparent */
-  0 1px 2px 0 rgba(16, 24, 40, 0.05);  /* subtle drop shadow below */
-```
-
-Format: `x y blur spread color`. Setting x, y, blur all to 0 and varying spread gives a perfect ring at any distance.
-
-### Error state — only icon and hint change colour
-
-The border stays `#e5e5e5` in the error state. Only the icon and hint text turn `#dc2626`. The error-focused ring uses a different red (`#d92d20`).
-
-```css
-.input-group--error .input-group__icon { color: #dc2626; }
-.input-group--error .input-group__hint { color: #dc2626; }
-
-.input-group--error .input-group__input:focus {
-  outline: none;
-  border-color: transparent;
-  box-shadow:
-    0 0 0 1px #d92d20,
-    0 0 0 4px rgba(217, 45, 32, 0.12);
-}
-```
-
-### `margin: 0 auto` requires a fixed width
-
-```css
-.text-inputs {
-  width: 340px;   /* required — without this, element fills full width */
-  margin: 0 auto; /* splits leftover horizontal space equally */
-}
-```
-
-Without `width`, the element fills the parent and there's no space left to split.
-
-### Desktop-first media queries use `max-width`
-
-When you write your base styles for desktop and override for mobile:
-
-```css
-/* base = desktop */
-.container { padding: 112px 0; }
-
-/* override = mobile */
-@media (max-width: 375px) {
-  .container { padding: 112px 17.5px; }
-}
-```
-
-Mobile-first uses `min-width`. Since this project started with desktop styles, `max-width` is the right choice here.
-
-### `box-shadow` values need `px` units
-
-Every non-zero value in `box-shadow` needs `px` — missing units breaks the entire declaration silently.
-
-```css
-/* Broken — browser ignores the whole property */
-box-shadow: 0 0 0 1 #444ce7;
-
-/* Correct */
-box-shadow: 0 0 0 1px #444ce7;
-```
+Must add `outline: none` and `border-color: transparent` — otherwise the browser outline and existing border both show through.
 
 ### `display: flex` on SVG wrapper divs
 
-A `<div>` wrapping an SVG ends up taller than the SVG because inline SVGs sit on the text baseline — browsers reserve descender space below. `display: flex` kills the gap.
+Inline SVGs sit on the text baseline — browsers reserve descender space below, making the div taller than the SVG. `display: flex` removes the baseline context.
 
 ```css
-.input-group__icon {
-  display: flex; /* collapses div to exact SVG dimensions */
-}
+.input-group__icon { display: flex; }
 ```
 
-Rule: any element wrapping only an SVG with unexpected extra height needs `display: flex`.
+### `width: 100%` on form elements
 
-### `padding` determines input height — no `height` needed
+`<input>` doesn't auto-stretch like block divs. Always add explicitly.
 
-With `box-sizing: border-box`, padding + line-height gives you the total height:
+### `aria-describedby` for hint/error text
 
+```html
+<input id="input-error" aria-describedby="hint-error" />
+<p id="hint-error">This is an error message.</p>
 ```
-padding-top: 10px + line-height: 20px + padding-bottom: 10px = 40px
-```
 
-No need to set `height: 40px` explicitly — it's redundant.
+`aria-describedby` goes on the `<input>`, pointing to the hint's `id`. Screen readers announce the hint when the field is focused.
 
-### Icon-leading variant pattern
+---
 
-Same absolute positioning trick, just mirrored. Left icon uses `left: 14px`, override `padding-left` on the input via BEM modifier descendant:
+## Mistakes Made
 
+| Mistake | What Went Wrong | Fix |
+|---|---|---|
+| `font-size: 14` | Missing `px` unit — browser ignored the declaration | `font-size: 14px` |
+| `box-shadow: 0 0 0 1 #444ce7` | Non-zero shadow values need `px` — entire property silently ignored | `0 0 0 1px #444ce7` |
+| `.input-group--disabled.input-group__icon` | No space = "same element has both classes" — wrong selector, no effect | `.input-group--error .input-group__icon` (space for descendant) |
+| Duplicate `:disabled` rules | `cursor: not-allowed` and `border-color` written in separate rules | Merged into one `.input-group__input:disabled` rule |
+| `aria-describedby` on the hint `<p>` | Put the attribute on the wrong element | Moved to `<input>`, gave `<p>` an `id` instead |
+| `input-group__input-icon` class name | Double "input" — not a real BEM element name | Renamed to `input-group__leading-icon` |
+| Hardcoded `fill="#A3A3A3"` on leading icon SVG | CSS can't control hardcoded fill — color won't respond to state changes | `fill="currentColor"` |
+
+---
+
+## Patterns to Reuse
+
+**Icon inside input — absolute positioning**
 ```css
-.input-group__leading-icon {
-  display: flex;
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-}
+.field { position: relative; }
+.icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); display: flex; }
+.input { padding-right: 38px; } /* prevent text overlap */
+```
 
-.input-group--icon-leading .input-group__input {
-  padding-left: 38px;
+**Multi-layer focus ring**
+```css
+:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 1px #444ce7, 0 0 0 4px rgba(68,76,231,0.12);
 }
+```
+
+**BEM modifier affecting child elements**
+```css
+.block--modifier .block__element { ... }
+```
+
+**SVG color via currentColor**
+```html
+<svg fill="none"><path fill="currentColor" /></svg>
+```
+```css
+.icon { color: #a3a3a3; } /* controls SVG color */
 ```
 
 ---
 
-## Accessibility
+## What You Did Well
 
-### `aria-describedby` for hint/error text
+1. **Correctly identified the icon positioning problem early** — knew `<input>` can't have children and reached for the wrapper + absolute positioning approach without being told.
+2. **Questioned `height: 40px`** — good instinct to ask whether padding alone was enough rather than just adding it blindly. It was redundant and you caught it.
+3. **Consistent BEM naming throughout** — `input-group`, `input-group__field`, `input-group__leading-icon` stayed clean and predictable across all four variants.
+4. **Good instinct on the wrapper class question** — asked whether a generic wrapper was needed for the icon-leading variant, then correctly concluded it wasn't once the pattern was clear.
 
-Links an input to its hint or error message so screen readers announce it when the field is focused.
+---
 
-```html
-<input id="input-error" aria-describedby="hint-error" type="text" />
-<p id="hint-error">This is an error message.</p>
-```
+## What to Improve
 
-- `aria-describedby` goes on the `<input>`, pointing to the hint's `id`
-- The hint `<p>` just needs an `id` — no aria attribute on the hint itself
-- Common mistake: putting `aria-describedby` on the hint instead of the input
+- **Always add `px` units to non-zero CSS values** — missing units have failed silently twice now (`font-size` and `box-shadow`). Make it a habit to check units before saving.
+- **Check which element gets `aria-*` attributes** — the attribute goes on the element that needs description, not the element doing the describing. Think: "who benefits from the description?"
+- **Read BEM selectors out loud before writing** — `.block--modifier .block__element` (space = descendant). Saying it catches the missing-space mistake before it happens.
+
+---
+
+## Interview Connections
+
+- **BEM naming** — frequently asked in component-focused interviews: "How do you structure CSS for a design system?" BEM is the standard answer with a concrete example.
+- **Custom focus rings** — accessibility is increasingly tested. Know why `box-shadow` beats `outline` for layered rings.
+- **`aria-describedby`** — WCAG AA compliance is a common requirement. Interviewers ask how form errors are communicated to screen readers — this is the answer.
+- **`width: 100%` on form elements** — a classic gotcha question. "Why isn't my input stretching?" is something every frontend dev hits.
+- **Absolute positioning for UI overlays** — the same `position: relative` parent + `position: absolute` child pattern applies to tooltips, dropdowns, badges, and icon buttons.
+
+---
+
+## How You Thought
+
+**Assumption that turned out wrong:** Put `aria-describedby` on the hint `<p>` instead of the `<input>`. The mental model was "the hint describes itself" — but the attribute is about the input saying "this other element describes me."
+
+**Good instinct:** When asked about `height: 40px`, you questioned whether `display: flex` could achieve the same thing. That's the right kind of question — pushing back on a proposed solution to understand the underlying mechanism. (The answer was: padding already gives you 40px, neither was needed.)
+
+**Good instinct:** Asked whether a generic wrapper class was needed for the icon-leading variant before writing CSS. Showed component-design thinking — not just "how do I style this" but "what's the right structure."
+
+**Gap revealed:** The initial BEM selector mistake (`.input-group--disabled.input-group__icon` with no space) showed the BEM modifier → descendant pattern wasn't fully internalized yet. The fix was quick once pointed out, but the muscle memory isn't there yet.
+
+**Understanding shift:** Started thinking of `outline` as the natural focus indicator — ended the project with a clear model of why `box-shadow` is the better tool and exactly what `outline: none` + `border-color: transparent` is doing.
+
+---
+
+## Carry-forward Questions
+
+- When should `aria-live="polite"` be added to error messages? In a real form where errors appear dynamically (on submit or on blur), the hint text needs to announce itself — `aria-describedby` alone isn't enough if the element appears after the field is focused.
+- Is `.input-group__leading-icon` better than `.input-group__icon--leading` (modifier on the same class)? One approach is DRY but shares positioning logic that differs; the other duplicates some properties but is clearer.
+- When does it make sense to use `role="alert"` on error messages instead of `aria-describedby`?
+
+---
+
+## Unlearned Gaps
+
+None — all features in this project were implemented by the user.
+
+---
+
+## What to Practice More
+
+- CSS units discipline — px on every non-zero value, especially in `box-shadow` and typography
+- `aria-describedby` vs `aria-labelledby` vs `aria-label` — understand when to use each before the next form component
+- BEM descendant selectors — write five examples from memory until the space-vs-no-space distinction is automatic
