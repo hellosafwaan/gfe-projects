@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- [Delete this comment] This file is the main file for the challenge. For the most part, you should be editing this file. -->
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,6 +14,68 @@
     <link rel="icon" href="img/favicon.ico" sizes="any" />
   </head>
   <body>
+    <div class="container">
+      <div class="textarea-inputs">
+
+        <!-- Default Text Area -->
+
+        <div class="textarea-group">
+          <div class="textarea-group__label-input">
+            <label class="textarea-group__label" for="textarea-default">Description</label>
+            <textarea
+              class="textarea-group__input"
+              name="textarea-element-1"
+              id="textarea-default"
+              placeholder="Write your message..."
+              aria-describedby="textarea-default-footer"
+              ></textarea>
+          </div>
+          <div class="textarea-group__footer">
+            <span id="textarea-default-footer" class="textarea-group__character-count">0/500</span>
+            <span class="textarea-group__error-message">This field is required</span>
+          </div>
+        </div>
+
+        <!-- Error Text Area -->
+
+        <div class="textarea-group textarea-group--error">
+          <div class="textarea-group__label-input">
+            <label class="textarea-group__label" for="textarea-error">Description</label>
+            <textarea
+              class="textarea-group__input"
+              name="textarea-element-2"
+              id="textarea-error"
+              placeholder="Write your message..."
+              aria-describedby="textarea-error-footer"
+              ></textarea>
+          </div>
+          <div class="textarea-group__footer">
+            <span class="textarea-group__character-count">0/500</span>
+            <span id="textarea-error-footer" class="textarea-group__error-message">This field is required</span>
+          </div>
+        </div>
+
+        <!-- Disabled Text Area -->
+
+        <div class="textarea-group">
+          <div class="textarea-group__label-input">
+            <label class="textarea-group__label" for="textarea-disabled">Description</label>
+            <textarea
+              class="textarea-group__input"
+              name="textarea-element-3"
+              id="textarea-disabled"
+              placeholder="Write your message..."
+              aria-describedby="textarea-disabled-footer"
+              disabled
+              ></textarea>
+          </div>
+          <div class="textarea-group__footer">
+            <span id="textarea-disabled-footer" class="textarea-group__character-count">0/500</span>
+            <span class="textarea-group__error-message">This field is required</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="credits">
       A challenge by
       <a
