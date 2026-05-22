@@ -119,7 +119,7 @@ Create `submission.md` inside the project folder. Use this exact structure and e
 - Summary: max 160 chars. Count the characters. If over, shorten until it fits.
 - After writing both, state the exact character counts: "Title: X chars. Summary: Y chars."
 
-The title should be a catchy one-liner that leads with the interesting part, not just the project name.
+The title should be professional and concise — clear and direct, not wordy or marketing-style. Lead with what was built, not how. Avoid dashes, em-dashes, or clever wordplay.
 The summary should mention the specific techniques used — not just "built a component with HTML and CSS."
 
 ## Step 5 — Update notes/
