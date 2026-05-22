@@ -91,6 +91,7 @@ Inline SVGs sit on the text baseline — browsers reserve descender space below,
 | `aria-describedby` on the hint `<p>` | Put the attribute on the wrong element | Moved to `<input>`, gave `<p>` an `id` instead |
 | `input-group__input-icon` class name | Double "input" — not a real BEM element name | Renamed to `input-group__leading-icon` |
 | Hardcoded `fill="#A3A3A3"` on leading icon SVG | CSS can't control hardcoded fill — color won't respond to state changes | `fill="currentColor"` |
+| Said `height: 40px` was redundant | Forgot to add the 2px border — `10 + 20 + 10 = 40` but actual height is `10 + 20 + 10 + 1 + 1 = 42px` | Add `height: 40px` — with `box-sizing: border-box` this pins border inside the box, matching Figma's `stroke-align: inside` |
 
 ---
 
