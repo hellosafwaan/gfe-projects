@@ -53,8 +53,10 @@ body {
   width: 100%;
   font-family: inherit;
   font-size: 14px;
+  line-height: 20px;
   color: #171717;
 }
+
 
 .input-group__input::placeholder {
   font-family: inherit;
@@ -75,6 +77,7 @@ body {
 
 
 .input-group__input:disabled {
+  background: #fafafa;
   border-color: #f5f5f5;
   cursor: not-allowed;
 }
