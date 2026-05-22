@@ -259,6 +259,42 @@ Always prefer `min-width` (mobile-first) over `max-width` (desktop-first).
 
 ---
 
+## resize
+
+Controls whether a textarea can be resized by the user.
+
+```css
+textarea {
+  resize: none;       /* disables resize handle — required for design-system components */
+  resize: vertical;   /* allows vertical resize only */
+  resize: both;       /* default — allows both directions */
+}
+```
+
+Always set `resize: none` on design-system textareas to match the fixed height in the design.
+
+---
+
+## ::placeholder pseudo-element
+
+Styles placeholder text separately from the actual input text.
+
+```css
+.textarea__input::placeholder {
+  color: #737373;
+  font-weight: 400;
+}
+
+/* Style placeholder differently in disabled state */
+.textarea__input:disabled::placeholder {
+  color: #a3a3a3;
+}
+```
+
+Browsers don't inherit font styles into placeholder — always set `font-family`, `font-size`, `font-weight` explicitly or use `inherit`.
+
+---
+
 ## outline: none on custom focus rings
 
 When implementing a custom focus ring with `box-shadow`, you must suppress the browser default first.

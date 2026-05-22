@@ -8,6 +8,27 @@ document.querySelectorAll('.class')   // all matching elements (NodeList)
 document.getElementById('id')        // by ID
 ```
 
+### Selector syntax
+- `#id` — selects by id
+- `.class` — selects by class
+- Common mistake: using `#` when you mean `.` — returns null silently
+
+---
+
+## Traversing the DOM
+
+### closest()
+Walks up the DOM tree from an element and returns the nearest ancestor matching a selector. Use in event handlers to get the wrapper without selecting it separately by ID.
+
+```javascript
+element.addEventListener('input', (event) => {
+  const group = event.target.closest('.textarea-group');
+  group.classList.add('textarea-group--exceeded');
+});
+```
+
+Use `closest()` whenever you need to go from a child element (e.g. the input that fired the event) up to a parent wrapper.
+
 ---
 
 ## Event listeners
