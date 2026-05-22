@@ -206,6 +206,16 @@ Use this whenever an `<a>` contains only an icon (SVG) or image and the height l
 
 **Missed this twice:** Applied it in the badge project for icon-only links, then forgot it again in the navbar project for the logo `<a>` wrapping an `<img>`. The trigger is simple: any `<a>` wrapping only visual content (SVG or image, no text) needs `display: flex`.
 
+**Also applies to `<div>` wrappers around SVGs.** A `<div>` is block-level but SVG inside it is inline — it still sits on the text baseline. The div ends up taller than the SVG (e.g. 16×21.5 instead of 16×16). Fix: `display: flex` on the div.
+
+```css
+.input-group__icon {
+  display: flex; /* collapses div to exact SVG dimensions — kills baseline gap */
+}
+```
+
+The rule: **any element that wraps only an SVG or image and has unexpected extra height needs `display: flex`.**
+
 ---
 
 ## position: fixed
@@ -246,6 +256,57 @@ Common breakpoints:
 - Desktop: 1024px or 1440px
 
 Always prefer `min-width` (mobile-first) over `max-width` (desktop-first).
+
+---
+
+## outline: none on custom focus rings
+
+When implementing a custom focus ring with `box-shadow`, you must suppress the browser default first.
+
+```css
+.input:focus {
+  outline: none;          /* remove browser default blue outline */
+  border-color: transparent; /* remove border so it doesn't show through */
+  box-shadow:
+    0 0 0 1px #444ce7,
+    0 0 0 4px rgba(68, 76, 231, 0.12);
+}
+```
+
+Why `box-shadow` instead of `outline`? `box-shadow` supports multiple layers and a spread radius for the outer glow — `outline` doesn't. Setting x, y, blur all to 0 and varying spread gives a solid ring at any distance from the element.
+
+---
+
+## width: 100% on form elements
+
+`<input>` and `<button>` do NOT stretch to fill their parent like block-level divs do. Always add `width: 100%` explicitly.
+
+```css
+.input-group__input {
+  width: 100%; /* required — form elements don't auto-stretch */
+}
+```
+
+---
+
+## Absolute icon inside input (position trick)
+
+Place icon inside input visually without affecting input width: make the field container `position: relative`, then absolutely position the icon.
+
+```css
+.input-group__field {
+  position: relative; /* coordinate context for the icon */
+}
+
+.input-group__icon {
+  position: absolute;
+  right: 14px;         /* distance from right edge of field */
+  top: 50%;            /* move top edge to vertical midpoint */
+  transform: translateY(-50%); /* pull back up by half icon height */
+}
+```
+
+`top: 50%` alone positions the top edge at center — the icon hangs below. `translateY(-50%)` shifts it up by half its own height, centering it perfectly. Also add `padding-right` on the input so typed text doesn't run under the icon.
 
 ---
 

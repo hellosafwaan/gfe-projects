@@ -1,6 +1,6 @@
 # Accessibility Reference
 
-> **Status: Gap area.** The concepts in this file were not learned hands-on. They were applied to the navbar component by the coach without the user implementing them. Come back to this file when you're ready to learn accessibility properly.
+> **Status: Partial.** `aria-expanded`, focus trap, and overlay patterns were applied by the coach (navbar). `aria-describedby` was implemented hands-on (text-input-component).
 
 ---
 
@@ -118,6 +118,21 @@ mobileMenu.addEventListener('keydown', (e) => {
 - `e.preventDefault()` stops the browser's default Tab behaviour (moving to next element outside the menu)
 
 **Common focusable selectors:** `a[href]`, `button:not([disabled])`, `input`, `select`, `textarea`, `[tabindex]`
+
+---
+
+## aria-describedby
+
+Links an input to its hint or error message. Screen readers announce the hint text when the field is focused.
+
+```html
+<input id="input-error" aria-describedby="hint-error" type="text" />
+<p id="hint-error">This is an error message.</p>
+```
+
+- Goes on the `<input>`, pointing to the hint's `id`
+- The hint element just needs an `id` — no aria attribute on it
+- Common mistake: putting `aria-describedby` on the hint instead of the input
 
 ---
 

@@ -99,3 +99,5 @@ Use when the **layout itself changes** between breakpoints:
 ```
 
 Don't use for minor adjustments that `max-width` or `%` already handle.
+
+`min-width` = mobile-first (write mobile defaults, add desktop overrides). `max-width` = desktop-first (write desktop defaults, add mobile overrides). Pick one direction and stay consistent — mixing them causes specificity confusion.
