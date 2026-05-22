@@ -1,6 +1,6 @@
 # Text Input Component — Design System
 
-**Icon inputs, focus rings, error states, and aria-describedby.**
+**A real design system input field - States, icons, focus rings, and aria**
 
 ---
 
