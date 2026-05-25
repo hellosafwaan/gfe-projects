@@ -36,9 +36,25 @@ Use `background` for gradients and images. Use `background-color` only for solid
 box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
 /*          x   y  blur  color           */
 
+/* With spread — fourth value */
+box-shadow: 0 0 0 4px rgba(68, 76, 231, 0.12);
+/*          x y blur spread color */
+
 /* Multiple shadows separated by comma */
 box-shadow: 0px 1px 3px rgba(0,0,0,0.1), 0px 1px 2px rgba(0,0,0,0.06);
 ```
+
+### box-shadow as a border replacement
+`border` affects the box model — with `box-sizing: border-box` it shrinks the inner space. `box-shadow` is purely decorative and never affects layout or sizing.
+
+```css
+/* Simulates 1px border + 4px focus ring — zero layout impact */
+box-shadow:
+  0 0 0 1px #9ca3af,
+  0 0 0 4px rgba(157, 164, 174, 0.2);
+```
+
+Use whenever a border would interfere with the sizing of child elements (e.g. a thumb inside a sized track).
 
 ---
 
@@ -88,6 +104,95 @@ button:disabled { color: #a3a3a3; } /* disabled state */
 ```
 
 Use both `:hover` and `:focus` for full accessibility — keyboard users trigger `:focus`, mouse users trigger `:hover`.
+
+### Form-specific pseudo-classes
+```css
+input:checked        /* checkbox/radio is ticked */
+input:disabled       /* input is disabled */
+input:focus-visible  /* keyboard focus only — not triggered by mouse clicks */
+input:not(:disabled) /* any input that is NOT disabled */
+```
+
+### Chaining pseudo-classes
+Multiple pseudo-classes stack on one element — all conditions must be true:
+```css
+input:not(:disabled):focus-visible:checked + .toggle-track
+/* "input that is not disabled, AND keyboard-focused, AND checked" */
+```
+
+### `:focus-visible` vs `:focus`
+- `:focus` triggers on every focus — including mouse clicks. Focus ring appears on click, which looks odd.
+- `:focus-visible` only triggers when the browser decides a visible indicator is needed (keyboard navigation). Use this for custom focus rings.
+
+### `:not()` — exclusion selector
+```css
+input:not(:disabled) + .toggle-track  /* track after a non-disabled input */
+```
+
+### `:has()` — CSS parent selector
+Style a parent based on what's inside it. Previously impossible without JavaScript.
+```css
+.toggle:has(input:disabled) {
+  cursor: not-allowed; /* label when its input is disabled */
+}
+```
+(GAP AREA — introduced in toggle project, not yet iterated on hands-on)
+
+---
+
+## CSS Combinators
+
+Four ways to select elements based on their DOM relationship:
+
+```css
+div p      /* descendant — p anywhere inside div */
+div > p    /* child — p directly inside div (not nested deeper) */
+div + p    /* adjacent sibling — p immediately after div */
+div ~ p    /* general sibling — any p after div at same level */
+```
+
+Most commonly used in real projects: space (descendant) and `+` (adjacent sibling).
+
+**`+` for form state (most important pattern):**
+```css
+input:checked + .toggle-track { background: #4338ca; }
+input:disabled + .toggle-track { background: #f3f4f6; }
+```
+Read: "the `.toggle-track` immediately after a checked input."
+
+---
+
+## `appearance: none` — strip browser native form styling
+
+Removes all browser-default rendering from a form element. Required before styling checkboxes, radios, or selects from scratch.
+
+```css
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none; /* Safari */
+}
+```
+
+After this: the element is invisible but still in the DOM, focusable, and operable — the behavior is intact.
+
+---
+
+## Visually hidden technique
+
+Hides an element visually while keeping it in the accessibility tree. Use instead of `display: none` on interactive form elements.
+
+```css
+input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+```
+
+- `display: none` → removed from DOM entirely — can't Tab, screen readers skip
+- Visually hidden → invisible but keyboard-focusable and screen reader readable
 
 ---
 

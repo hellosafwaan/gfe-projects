@@ -117,6 +117,25 @@ Adding a new variant or size is one new class, not 20.
 
 ---
 
+## Toggle switches — `<input type="checkbox">` pattern
+
+Use `<input type="checkbox">` as the semantic base for toggle switches, not `<button>` or `<div>`. It provides built-in state, keyboard behavior (Space to toggle), and form participation.
+
+**Label wrapping pattern:**
+```html
+<label class="toggle toggle--md" for="switch-1">
+  <input id="switch-1" type="checkbox" role="switch">
+  <span class="toggle-track"></span>
+</label>
+```
+
+- Label wraps both the input and the visual span — clicking anywhere on the label toggles the checkbox
+- `role="switch"` tells screen readers this is an on/off switch, not a checkbox
+- Input is visually hidden with CSS; the `<span>` is styled as the visual toggle
+- `for` on label and `id` on input must match — clicking label triggers the input
+
+---
+
 ## Inline SVG Pattern
 
 Embed SVGs directly in HTML for CSS colour control.

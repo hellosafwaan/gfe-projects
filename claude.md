@@ -111,6 +111,28 @@ When relevant to the project, highlight:
 - Help me think through the logic, don't just fix it
 - Once fixed, ask why it broke - what was the assumption?
 
+## Coaching Techniques (iterated from sessions)
+
+### Always ask "do you know X?" before explaining
+Before introducing a new concept, ask if I already know it. This makes me think first, reveals gaps, and prevents over-explaining things I already understand.
+
+### Read selectors aloud in plain English
+When introducing or correcting a CSS selector, always read it in plain English first:
+> `.toggle:hover input:checked + .toggle-track` → "Inside a hovered `.toggle`, find a checked input, then target the track next to it."
+This dramatically improves comprehension of complex selector chains.
+
+### Show the mental model before the code
+Lead with a visual or conceptual explanation before writing syntax. Example: draw `OFF: [○        ]` before explaining track/thumb. Visual first, code second.
+
+### Connect new concepts to things already used
+When introducing something new, anchor it to something the user has seen before. Example: "`::after` works the same way as `::placeholder` — you've used that before."
+
+### Flag look-alike concepts that behave differently
+Proactively call out things that seem similar but work differently: `border` vs `box-shadow`, `display: none` vs visually hidden, `:focus` vs `:focus-visible`.
+
+### After each project, review the conversation and iterate coaching
+Read the full session before writing LEARNINGS.md. Extract: what landed, what confused, what the user questioned, what showed good instinct. Use this to improve future coaching approach.
+
 ---
 
 **The Goal**: By the end of each project, you should understand not just how to build it, but *why* you made each structural, styling, and interaction decision—and when you'd use these patterns in real projects and interviews.
@@ -123,10 +145,10 @@ Current files:
 - `notes/css-layout.md` — flexbox, grid, centering, responsive width, media queries
 - `notes/css-box-model.md` — margin, padding, box-sizing, overflow, shorthand bug
 - `notes/css-typography.md` — font-size, weight, line-height, Figma tokens, colors
-- `notes/css-properties.md` — border-radius, object-fit, box-shadow, pseudo-classes, display, position: fixed, media queries, display: block
-- `notes/html-semantics.md` — when to use article/section/div, headings, buttons vs links
+- `notes/css-properties.md` — border-radius, object-fit, box-shadow (incl. as border replacement), pseudo-classes, display, position: fixed, media queries, CSS combinators, appearance: none, visually hidden, :not(), :has(), :focus-visible
+- `notes/html-semantics.md` — when to use article/section/div, headings, buttons vs links, input[type=checkbox] toggle pattern
 - `notes/javascript-dom.md` — querySelector, addEventListener, classList (add/remove/toggle)
-- `notes/accessibility.md` — aria-expanded, aria-controls, role=dialog, focus management, focus trap, Escape key (GAP AREA — not yet learned hands-on)
+- `notes/accessibility.md` — aria-expanded, aria-controls, role=dialog, focus management, focus trap, Escape key, role=switch, visually hidden inputs, :focus-visible (GAP AREA — overlay patterns not yet learned hands-on)
 
 A `notes/techniques/` subfolder contains reusable GFE technique guides:
 - `notes/techniques/html-forms.md` — label/input association, aria-describedby, browser validation, autocomplete

@@ -136,6 +136,49 @@ Links an input to its hint or error message. Screen readers announce the hint te
 
 ---
 
+## role="switch" for toggle components
+
+When using `<input type="checkbox">` as a toggle switch, add `role="switch"` to tell screen readers it's a switch (on/off), not a checkbox (checked/unchecked).
+
+```html
+<input type="checkbox" role="switch" id="toggle-1">
+```
+
+Without it, screen readers announce "checkbox" — with it, they announce "switch, off" / "switch, on".
+
+---
+
+## Visually hidden inputs — keeping form elements accessible
+
+Never use `display: none` on interactive inputs. It removes them from the accessibility tree.
+Use the visually hidden technique instead:
+
+```css
+input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+```
+
+The input stays keyboard-focusable and screen reader readable. See `css-properties.md` for the full pattern.
+
+---
+
+## :focus-visible for keyboard-only focus rings
+
+```css
+input:focus-visible + .toggle-track {
+  box-shadow: 0 0 0 4px rgba(68, 76, 231, 0.12);
+}
+```
+
+`:focus-visible` shows the ring only when navigating by keyboard — not when clicking with a mouse. Preferred over `:focus` for custom focus rings on form controls.
+
+---
+
 ## Checklist for any overlay/modal
 
 - [ ] `role="dialog"` and `aria-modal="true"` on the overlay element
