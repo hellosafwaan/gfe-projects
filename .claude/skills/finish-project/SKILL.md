@@ -149,13 +149,28 @@ Find the stub card for this project (added by `/start-project`). It will have a 
 
 If no stub exists (the card is missing entirely), add a full card entry.
 
-## Step 7 — Summary
+## Step 7 — Update memory/learning_progress.md
+
+Read `/Users/safwaan/.claude/projects/-Users-safwaan-Developer-learn-gfe-projects/memory/learning_progress.md`.
+
+Update it with this project:
+
+1. **Completed Projects table** — add a new row with: project name, key concepts used, and the single most notable gain from this session.
+2. **Mastered Concepts** — add any concepts from this project that are now solid and shouldn't need re-teaching.
+3. **Persistent Gaps** — update any existing gaps that improved, worsened, or are newly confirmed. Add new ones if this project revealed a gap not already listed.
+4. **Carry-forward Questions** — add the unresolved questions from this project's LEARNINGS.md under a new "From [project-name]:" heading.
+5. **Current State** — update the "Next project", "Overall trajectory", and "Interview readiness" lines to reflect where things stand now.
+
+Do not rewrite the whole file — surgically update each section.
+
+## Step 8 — Summary
 
 Report what was done:
 - ✓ or ✗ for each file: `LEARNINGS.md`, `submission.md`
 - Title character count and summary character count
 - Which `notes/` files were updated and what was added
 - ✓ or ✗ for `index.html` card description
+- ✓ or ✗ for `memory/learning_progress.md`
 - Any gaps flagged as unlearned
 
 Then ask: "Anything you want to add or change before we commit?"

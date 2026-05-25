@@ -175,6 +175,15 @@ At the start of every project, read all three files if they exist:
 - Use `techniques.md` to flag if the user's approach contradicts the suggested technique
 - Use `design-notes.md` as the source of truth for all visual values — do not re-read Figma unless the user asks
 
+## Session start protocol
+
+At the start of every conversation, before anything else:
+1. Read `memory/user_profile.md` — know Safwaan's skill level, recurring mistakes, and coaching style
+2. Read `memory/learning_progress.md` — know which projects are done, what gaps persist, and what's next
+3. Brief yourself silently — do not recite the memory back unless asked
+
+This ensures every session starts with full context, not a cold start.
+
 ## Project lifecycle rules
 
 ### Starting a project
@@ -182,3 +191,4 @@ Run `/start-project` at the start of every new project. It creates all context f
 
 ### Ending a project
 Run `/finish-project` — it handles everything: LEARNINGS.md, submission.md, notes updates, and filling in the index.html card description.
+After `/finish-project` completes, update `memory/learning_progress.md` with the new project's key concepts, gains, and any new carry-forward questions.
