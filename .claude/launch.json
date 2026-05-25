@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "toggle-component",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3456", "design-system/toggle-component"],
+      "port": 3456
+    }
+  ]
+}
