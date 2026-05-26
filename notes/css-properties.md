@@ -73,12 +73,20 @@ object-fit: fill;     /* stretch to fill — distorts, avoid */
 ## display
 
 ```css
-display: block;        /* full width, starts on new line */
-display: inline;       /* flows with text, ignores width/height */
-display: inline-block; /* content width, respects padding/border */
-display: flex;         /* flex container */
+display: block;        /* full width, starts on new line — default for div */
+display: inline;       /* flows with text — ignores width, height, top/bottom padding/margin */
+display: inline-block; /* shrinks to content width, but respects padding/border/sizing */
+display: flex;         /* full-width flex container */
+display: inline-flex;  /* content-width flex container — same as inline-block but flexbox inside */
 display: none;         /* hidden, takes no space */
 ```
+
+`inline-block` = block element that only takes the space its content needs (doesn't stretch full width).
+`inline-flex` = same outer behavior as `inline-block`, but children are flex items.
+
+Use `inline-block` or `inline-flex` for components that shouldn't stretch: badges, tags, tooltip boxes, chips.
+
+`inline` alone is rarely useful for UI — you can't control its size. Use `inline-block` or `inline-flex` instead.
 
 ---
 
@@ -377,6 +385,119 @@ textarea {
 ```
 
 Always set `resize: none` on design-system textareas to match the fixed height in the design.
+
+---
+
+## ::after and ::before pseudo-elements
+
+Generated elements inserted inside an element — `::before` at the start, `::after` at the end.
+
+Two rules that are always required:
+1. `content: ""` — without this, the element doesn't render at all
+2. `display: block` (or `flex`) — default is `inline`, which ignores `width` and `height`
+
+```css
+.tooltip__content::after {
+  content: "";        /* required — no content = no element */
+  display: block;     /* required — inline ignores width/height */
+  width: 12px;
+  height: 12px;
+  background: #0a0a0a;
+  transform: rotate(45deg);
+}
+```
+
+Common use case: decorative shapes (tooltip arrows, dividers, badges) without extra HTML markup.
+
+### Default position of `position: absolute` with no coordinates
+
+When `position: absolute` is set but no `top`/`right`/`bottom`/`left` values are given, the element lands **exactly where it would have been in normal flow** — it just gets lifted out (stops taking up space). It does NOT jump to `0, 0`.
+
+```css
+/* Arrow lands at its natural flow position — bottom-left of the content */
+.tooltip__content::after {
+  position: absolute;
+  /* no coordinates — sits where it would have been in flow */
+}
+
+/* To actually place it, always add coordinates: */
+.tooltip__content::after {
+  position: absolute;
+  bottom: -6px; /* half the arrow height, outside the bottom edge */
+  left: 12px;   /* distance from left edge */
+}
+```
+
+Always pair `position: absolute` with explicit coordinates when you need precise placement.
+
+---
+
+## white-space: nowrap
+
+Prevents text from wrapping onto the next line. The element grows horizontally instead of wrapping.
+
+```css
+.tooltip__content {
+  white-space: nowrap; /* keeps tooltip text on one line */
+}
+```
+
+Use on tooltips, badges, chips, tags — any component that should never break onto two lines.
+
+---
+
+## CSS cascade override: resetting position properties
+
+When a base rule sets `bottom: 100%`, all variants inherit it — including those that need a different positioning axis. Reset explicitly with `auto` and `0` before setting the new values.
+
+```css
+/* Base leaks: bottom: 100%; margin-bottom: 8px */
+.tooltip { bottom: 100%; margin-bottom: 8px; }
+
+/* Right variant needs left/top axis — must cancel the base */
+.tooltip--right {
+  bottom: auto;       /* cancel inherited bottom: 100% */
+  margin-bottom: 0;   /* cancel inherited margin */
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 8px;
+}
+```
+
+Pattern: when overriding positional properties, always reset the axis you're abandoning to `auto`/`0` first.
+
+---
+
+## transform order
+
+Transforms apply right-to-left. The rightmost transform runs first and sets the coordinate frame for the next one.
+
+```css
+/* Correct — translates along original X axis, then rotates */
+transform: translateX(-50%) rotate(45deg);
+
+/* Wrong — rotates first (tilts axis 45°), then translates diagonally */
+transform: rotate(45deg) translateX(-50%);
+```
+
+Rule: if you need to translate along the original axis, put `translate` before `rotate`.
+
+---
+
+## CSS-only hover (descendant combinator)
+
+Show/hide a child element based on the parent's hover state. The tooltip must be a descendant of the trigger — the space combinator (` `) selects any child at any depth.
+
+```css
+.tooltip { display: none; position: absolute; }
+.tooltip-trigger { position: relative; }
+.tooltip-trigger:hover .tooltip { display: inline-flex; }
+```
+
+Read aloud: "When `.tooltip-trigger` is hovered, show any `.tooltip` inside it."
+
+Limitation: only fires on mouse hover — doesn't support keyboard focus. For keyboard support, add `:focus-within`.
 
 ---
 
