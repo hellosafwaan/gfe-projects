@@ -19,6 +19,16 @@ Once you have the path:
 - If the folder does not exist, create it with `mkdir -p`.
 - Report back: "Found existing files: [list]" or "Folder is empty / created fresh."
 
+If `index.html` exists in the project folder, clean it up immediately using the Edit tool:
+1. Remove the `<!-- [Delete this comment] ... -->` HTML comment (the one on the line inside `<html>`)
+2. Remove the Tailwind CDN comment block and its `<script src="https://cdn.tailwindcss.com">` tag
+3. Remove the empty `<style>` block (including its comment line)
+4. Remove the `<h1 class="text-5xl ...">Hello world!...</h1>` element
+5. Replace `href="https://www.greatfrontend.com/projects/u/username"` with `href="https://www.greatfrontend.com/projects/u/hellosafwaan"`
+6. Replace `>Your Name</a>` with `>Safwaan</a>`
+
+Report: "✓ Starter index.html cleaned up" or skip silently if the file wasn't found or was already clean.
+
 ## Step 2 — GFE brief URL
 
 Ask:
