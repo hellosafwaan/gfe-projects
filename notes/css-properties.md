@@ -28,6 +28,27 @@ background: url('image.jpg') center / cover;        /* image */
 
 Use `background` for gradients and images. Use `background-color` only for solid colors.
 
+### SVG as background-image on a pseudo-element
+Use to render an icon inside a styled element without extra HTML markup:
+
+```css
+.checkbox__box::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 9px;
+  height: 7px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url("../img/checkmark.svg");
+  background-size: contain;    /* scale SVG to fit without cropping */
+  background-repeat: no-repeat; /* prevent tiling */
+}
+```
+
+Always pair with `background-size: contain` and `background-repeat: no-repeat` — without them the image either distorts or tiles.
+
 ---
 
 ## box-shadow
@@ -116,10 +137,13 @@ Use both `:hover` and `:focus` for full accessibility — keyboard users trigger
 ### Form-specific pseudo-classes
 ```css
 input:checked        /* checkbox/radio is ticked */
+input:indeterminate  /* checkbox is in the "some but not all" state — set via JS only */
 input:disabled       /* input is disabled */
 input:focus-visible  /* keyboard focus only — not triggered by mouse clicks */
 input:not(:disabled) /* any input that is NOT disabled */
 ```
+
+`:indeterminate` has no HTML attribute — requires `input.indeterminate = true` in JavaScript. CSS responds to it, but JS must trigger it first.
 
 ### Chaining pseudo-classes
 Multiple pseudo-classes stack on one element — all conditions must be true:

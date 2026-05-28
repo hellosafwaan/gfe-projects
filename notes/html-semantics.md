@@ -117,6 +117,30 @@ Adding a new variant or size is one new class, not 20.
 
 ---
 
+## Custom checkbox pattern — visually hidden input + sibling span
+
+For custom-styled checkboxes where the native appearance needs to be fully replaced:
+
+```html
+<label class="checkbox">
+  <input type="checkbox" class="checkbox__input" id="cb-1">
+  <span class="checkbox__box"></span>   <!-- custom visual -->
+  <span class="checkbox__label">Label</span>
+</label>
+```
+
+- Input is visually hidden (not `display:none`) — keeps it focusable and keyboard-accessible
+- `.checkbox__box` is the custom visual, styled via CSS sibling combinators
+- `+` combinator targets `.checkbox__box` (immediately adjacent): `input:checked + .checkbox__box`
+- `~` combinator targets `.checkbox__label` (non-adjacent sibling): `input:disabled ~ .checkbox__label`
+- All 9 states (3 value × 3 interaction) driven by CSS pseudo-classes — no JS class toggling
+
+When to use `~` vs `+`:
+- `+` — the target is the **immediately next** sibling
+- `~` — the target is **any later** sibling (use when there's another element between input and target)
+
+---
+
 ## Toggle switches — `<input type="checkbox">` pattern
 
 Use `<input type="checkbox">` as the semantic base for toggle switches, not `<button>` or `<div>`. It provides built-in state, keyboard behavior (Space to toggle), and form participation.
