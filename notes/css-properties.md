@@ -392,6 +392,12 @@ Always set `resize: none` on design-system textareas to match the fixed height i
 
 Generated elements inserted inside an element — `::before` at the start, `::after` at the end.
 
+### When to use which
+- `::before` — decorative content behind or in front of the element (overlays, background shapes)
+- `::after` — content layered on top as a final layer (checkmarks, arrows, badges)
+
+In practice the visual difference is handled by `position: absolute` anyway, so the choice is mostly convention. `::after` is the default go-to for most decorative additions.
+
 Two rules that are always required:
 1. `content: ""` — without this, the element doesn't render at all
 2. `display: block` (or `flex`) — default is `inline`, which ignores `width` and `height`

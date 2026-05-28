@@ -75,3 +75,34 @@ closeBtn.addEventListener('click', () => {
 ```
 
 Use `toggle` when one button controls both open and close. Use `add`/`remove` when separate buttons handle each action.
+
+---
+
+## HTML attributes vs DOM properties
+
+These look similar but are different things.
+
+**HTML attribute** — written in markup, always a string, sets the *initial* state:
+```html
+<input type="checkbox" checked>
+```
+
+**DOM property** — a JavaScript property on the element object, can be any type, reflects *current* state:
+```js
+input.checked // true or false right now
+```
+
+The classic example — after a user clicks a checkbox:
+```js
+input.getAttribute('checked') // still "" (the original HTML, unchanged)
+input.checked                 // false (the current truth)
+```
+
+**Key rule:** Attributes set the default. Properties reflect what's happening right now. They can get out of sync.
+
+### `indeterminate` — property only, no attribute
+Some DOM properties have no HTML attribute at all. `indeterminate` on a checkbox is one — you can only set it via JS:
+```js
+input.indeterminate = true  // shows a dash, neither checked nor unchecked visually
+```
+There's nothing to write in HTML to trigger it. This is why it always requires JavaScript.
