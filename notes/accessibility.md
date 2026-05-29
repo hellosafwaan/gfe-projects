@@ -179,6 +179,25 @@ input:focus-visible + .toggle-track {
 
 ---
 
+## role="alert" and aria-live for notifications (toast)
+
+Live regions announce content changes to screen readers without requiring focus.
+
+```html
+<div id="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <!-- toast content -->
+</div>
+```
+
+- `role="alert"` — screen reader announces the content immediately when it appears; implies `aria-live="assertive"`
+- `aria-live="assertive"` — interrupts current announcement; used alongside `role="alert"` for browser compatibility
+- `aria-live="polite"` — waits for the user to be idle before announcing (use for non-urgent updates)
+- `aria-atomic="true"` — reads the entire region as one announcement, not just the changed part
+
+**Key rule:** Only add to the **live/functional** element. Static comparison copies of a component do NOT get `role="alert"` — screen readers announce live regions on page load, which would be noisy.
+
+---
+
 ## Checklist for any overlay/modal
 
 - [ ] `role="dialog"` and `aria-modal="true"` on the overlay element

@@ -78,6 +78,38 @@ Use `toggle` when one button controls both open and close. Use `add`/`remove` wh
 
 ---
 
+## setTimeout
+
+Runs a function after a delay (in milliseconds).
+
+```js
+setTimeout(() => {
+  // runs after 3000ms
+}, 3000);
+```
+
+Use for auto-dismissing toasts, debouncing, or anything that needs to happen after a delay. Returns a timer ID you can pass to `clearTimeout()` to cancel.
+
+---
+
+## transitionend event
+
+Fires on an element when a CSS transition finishes. Use for cleanup after exit animations.
+
+```js
+toast.addEventListener('transitionend', () => {
+  if (toast.classList.contains('hide')) {
+    toast.classList.remove('hide'); // reset after exit animation
+  }
+});
+```
+
+The `classList.contains` guard is important — `transitionend` fires after both the entrance and exit transitions. Without the guard, it would incorrectly clean up after the entrance too.
+
+Note: fires once per transitioned property — if `top` and `opacity` both transition, the event fires twice.
+
+---
+
 ## HTML attributes vs DOM properties
 
 These look similar but are different things.

@@ -602,6 +602,35 @@ Place icon inside input visually without affecting input width: make the field c
 
 ---
 
+## transition
+
+Animates a CSS property change smoothly over time instead of snapping instantly. Triggers whenever the property value changes (e.g. via class toggle).
+
+```css
+transition: top 0.5s ease, opacity 0.5s ease;
+/* format: property duration timing-function */
+```
+
+**Timing functions:**
+- `ease` — fast start, slow end (most natural, use by default)
+- `linear` — constant speed
+- `ease-in` — slow start, fast end
+- `ease-out` — fast start, slow end
+- `ease-in-out` — slow start, fast middle, slow end
+
+**Toast slide pattern — start hidden, transition to visible on class toggle:**
+```css
+#toast {
+  top: -100px;
+  opacity: 0;
+  transition: top 0.5s ease, opacity 0.5s ease;
+}
+#toast.show { top: 20px; opacity: 1; }
+#toast.hide { top: -100px; opacity: 0; }
+```
+
+---
+
 ## display: block on inline elements
 
 `<a>` is inline by default — it only takes up as much width as its text content. `display: block` makes it stretch to fill the parent's full width.

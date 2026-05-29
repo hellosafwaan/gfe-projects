@@ -82,6 +82,23 @@ Each wrapper controls its own gap — one place per gap value.
 
 ---
 
+## Viewport vertical centering
+
+The standard pattern for centring content in the full viewport:
+
+```css
+.container {
+  min-height: 100vh;   /* fills full viewport height */
+  display: flex;
+  justify-content: center;  /* centres horizontally */
+  align-items: center;      /* centres vertically */
+}
+```
+
+`min-height: 100vh` (not `height`) so the container can still grow beyond the viewport if content is tall. One of the most-asked CSS patterns in interviews.
+
+---
+
 ## Media queries
 
 Use when the **layout itself changes** between breakpoints:
