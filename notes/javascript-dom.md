@@ -110,6 +110,43 @@ Note: fires once per transitioned property — if `top` and `opacity` both trans
 
 ---
 
+## event.target vs event.currentTarget
+
+Used for "click outside to close" behaviour on overlays, modals, and dropdowns.
+
+- **`event.target`** — the element that was actually clicked (where the click originated)
+- **`event.currentTarget`** — the element the listener is attached to
+
+```js
+overlay.addEventListener('click', (event) => {
+  if (event.target === overlay) {
+    closeModal(); // only fires when clicking the overlay itself, not its children
+  }
+});
+```
+
+Click events bubble up the DOM — clicking inside the card still reaches the overlay listener. `event.target` tells you where the click actually started, so you can ignore clicks that originated inside the card.
+
+Use this pattern anywhere you need "click outside to dismiss": modals, dropdowns, sidebars, tooltips.
+
+---
+
+## Passing functions to event listeners
+
+When passing a function to `addEventListener`, the event object is passed as the first argument automatically:
+
+```js
+// WRONG — event object becomes the `variant` argument
+button.addEventListener('click', showModal);
+
+// CORRECT — wrap in arrow function to pass your own arguments
+button.addEventListener('click', () => showModal('primary', title, description));
+```
+
+Always wrap in an arrow function when the handler needs specific arguments.
+
+---
+
 ## HTML attributes vs DOM properties
 
 These look similar but are different things.

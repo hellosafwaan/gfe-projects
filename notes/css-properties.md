@@ -355,6 +355,25 @@ The rule: **any element that wraps only an SVG or image and has unexpected extra
 
 ---
 
+## flex-shrink
+
+Controls whether a flex child is allowed to shrink when siblings need more space.
+
+```css
+.icon-button {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0; /* never compresses, even when title text is long */
+}
+```
+
+- Default is `flex-shrink: 1` — all flex children can shrink
+- `flex-shrink: 0` — locks the element to its defined size always
+
+Use on: icons, avatars, badges, close buttons — any fixed-size element sitting next to variable-length text in a flex row.
+
+---
+
 ## position: fixed
 
 Removes an element from document flow and pins it to the viewport. Setting all four sides to `0` makes it full-screen.

@@ -37,17 +37,31 @@ The `id` on the target and the `aria-controls` value must match exactly.
 
 ## role="dialog" and aria-modal
 
-Used on overlay elements (modals, mobile menus) that sit on top of the rest of the page. Tells screen readers: "this is a focused context — don't read the content behind it."
+Used on modal dialogs to tell screen readers: "this is a focused context — don't read the content behind it."
 
 ```html
-<div role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <!-- menu content -->
-</div>
+<div
+  class="modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+  id="modal"
+>
+  <p id="modal-title">Are you sure you want to leave the process?</p>
 ```
 
-- `role="dialog"` — declares this is a dialog/overlay
+- `role="dialog"` — declares this is a dialog
 - `aria-modal="true"` — tells screen readers to ignore everything outside
-- `aria-label` — gives the dialog a name (since it has no visible heading)
+- `aria-labelledby` — links the dialog to its visible title by ID; screen reader announces it on open
+- Use `aria-label` only when there's no visible heading
+
+### aria-hidden toggling
+When the modal opens, `aria-hidden` should be `"false"` (visible to screen readers). When it closes, `"true"`. Counterintuitive — remember: `false` = "I am NOT hidden".
+
+```js
+modal.setAttribute('aria-hidden', 'false'); // on open — NOT hidden
+modal.setAttribute('aria-hidden', 'true');  // on close — hidden
+```
 
 ---
 
