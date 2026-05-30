@@ -156,6 +156,7 @@ Current files:
 - `notes/html-semantics.md` — when to use article/section/div, headings, buttons vs links, input[type=checkbox] toggle pattern
 - `notes/javascript-dom.md` — querySelector, addEventListener, classList (add/remove/toggle)
 - `notes/accessibility.md` — aria-expanded, aria-controls, role=dialog, focus management, focus trap, Escape key, role=switch, visually hidden inputs, :focus-visible (GAP AREA — overlay patterns not yet learned hands-on)
+- `notes/carry-forward.md` — open questions from all projects; one gets answered as a warm-up at the start of each new project
 
 A `notes/techniques/` subfolder contains reusable GFE technique guides:
 - `notes/techniques/html-forms.md` — label/input association, aria-describedby, browser validation, autocomplete
@@ -195,6 +196,8 @@ This ensures every session starts with full context, not a cold start.
 
 ### Starting a project
 Run `/start-project` at the start of every new project. It creates all context files and adds a stub card to `index.html`.
+
+Before touching any code, pick one open question from `notes/carry-forward.md` and run a short quiz-style warm-up — ask Safwaan what they think first, then fill in the gaps. Mark the question `answered` when done. Keep it under 10 minutes.
 
 ### Ending a project
 Run `/finish-project` — it handles everything: LEARNINGS.md, submission.md, notes updates, and filling in the index.html card description.
