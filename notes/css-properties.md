@@ -650,6 +650,32 @@ transition: top 0.5s ease, opacity 0.5s ease;
 
 ---
 
+## opacity + pointer-events for animatable show/hide
+
+`display: none` cannot be transitioned. Use `opacity` + `pointer-events: none` instead to get animatable visibility.
+
+```css
+.dropdown__menu {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.dropdown__menu.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+```
+
+- `opacity: 0` — invisible but still in the DOM and layout
+- `pointer-events: none` — prevents clicks on the invisible element
+- `transition` — animates both properties when the class is toggled
+
+Use whenever you need to animate something appearing or disappearing — dropdowns, tooltips, toasts.
+
+---
+
 ## display: block on inline elements
 
 `<a>` is inline by default — it only takes up as much width as its text content. `display: block` makes it stretch to fill the parent's full width.

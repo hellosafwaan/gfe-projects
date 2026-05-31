@@ -147,6 +147,62 @@ Always wrap in an arrow function when the handler needs specific arguments.
 
 ---
 
+## Event delegation
+
+One listener on a parent catches events from all children. Use `event.target.closest()` to identify which child triggered it.
+
+```js
+menu.addEventListener('click', (event) => {
+  const item = event.target.closest('.dropdown__item');
+  if (!item) return;
+  selectItem(item);
+});
+```
+
+More scalable than adding a listener to each item. Also works for dynamically added children.
+
+---
+
+## document.activeElement
+
+Returns the element that currently has keyboard focus.
+
+```js
+const focused = document.activeElement;
+const index = Array.from(items).indexOf(focused);
+```
+
+Use in keyboard handlers (`keydown`) — `event.target` is not reliable for keyboard events. Use `document.activeElement` instead.
+
+---
+
+## Array.from() on NodeLists
+
+`querySelectorAll` returns a NodeList — not a real array. It doesn't have `indexOf`, `map`, `filter` etc.
+
+```js
+const items = Array.from(document.querySelectorAll('.item'));
+const index = items.indexOf(document.activeElement);
+```
+
+Always convert with `Array.from()` before using array methods.
+
+---
+
+## element.contains()
+
+Returns `true` if the argument is the element itself or a descendant. Used for outside-click detection.
+
+```js
+document.addEventListener('click', (event) => {
+  if (!menu.contains(event.target) && !trigger.contains(event.target)) {
+    close();
+  }
+});
+```
+
+---
+
 ## HTML attributes vs DOM properties
 
 These look similar but are different things.

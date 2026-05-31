@@ -212,6 +212,59 @@ Live regions announce content changes to screen readers without requiring focus.
 
 ---
 
+## ARIA for custom dropdowns (listbox pattern)
+
+Use when building a custom `<select>`-replacement with selectable options.
+
+```html
+<button aria-haspopup="listbox" aria-expanded="false">Privacy options</button>
+<ul role="listbox">
+  <li role="option" aria-selected="false" tabindex="0">Public</li>
+  <li role="option" aria-selected="true" tabindex="0">Private</li>
+</ul>
+```
+
+JS must sync ARIA with visual state:
+```js
+// on open
+trigger.setAttribute('aria-expanded', 'true');
+// on close
+trigger.setAttribute('aria-expanded', 'false');
+// on select
+items.forEach(el => el.setAttribute('aria-selected', 'false'));
+item.setAttribute('aria-selected', 'true');
+```
+
+- `aria-haspopup="listbox"` — tells screen readers the button opens a list of selectable options
+- `role="listbox"` — the list of options
+- `role="option"` — each individual item
+- `aria-selected` — which item is currently selected
+- `tabindex="0"` on `<li>` — required since `<li>` isn't focusable by default
+
+**`role="menu"` vs `role="listbox"`:**
+- `listbox` — for selecting a value (like `<select>`), one item stays selected
+- `menu` — for triggering actions (like a context menu), nothing stays "selected"
+
+---
+
+## tabindex
+
+Controls whether an element can be focused with the Tab key.
+
+| Value | Behaviour |
+|---|---|
+| `tabindex="0"` | Joins natural tab order — user can Tab to it |
+| `tabindex="-1"` | JS-only focus via `.focus()` — not Tab-reachable |
+| `tabindex="1+"` | Forces order — never use, breaks accessibility |
+
+```html
+<li tabindex="0">Focusable list item</li>
+```
+
+Use `0` when you need a non-interactive element (like `<li>`) to be keyboard-navigable. Use `-1` for programmatic focus (e.g. focus trap).
+
+---
+
 ## Checklist for any overlay/modal
 
 - [ ] `role="dialog"` and `aria-modal="true"` on the overlay element
