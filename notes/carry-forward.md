@@ -14,7 +14,7 @@ Update Status to `answered` when done.
 | When does `:has()` have browser support issues worth worrying about? | CSS selectors | toggle | open |
 | What's the difference between `clip` and `clip-path` in visually hidden? | CSS properties | toggle, checkbox | open |
 | When to use `classList.toggle('open')` vs separate `.add`/`.remove`? | JavaScript DOM | navbar | open |
-| How do you close a menu when the user clicks outside? | JavaScript DOM | navbar, modal | open |
+| How do you close a menu when the user clicks outside? | JavaScript DOM | navbar, modal | answered |
 | When exactly does `inline-flex` vs `flex` matter in real component usage? | CSS layout | badge, button | open |
 | When would you use `:focus` over `:focus-visible` in a real production component? | CSS selectors / a11y | checkbox, text-input | open |
 | Does `::after` on `<input>` work reliably across browsers, or is visually hidden + span more robust? | CSS pseudo-elements | checkbox | open |
@@ -26,3 +26,6 @@ Update Status to `answered` when done.
 | What's the difference between `aria-hidden="true"` and `display: none` for screen readers? | Accessibility | modal | open |
 | When should you use the `inert` attribute instead of `aria-hidden`? | Accessibility | modal | open |
 | How would you add a CSS fade transition to a modal that uses `display: none`? | CSS transitions | modal, toast | open |
+| What's the correct keyboard navigation pattern for tabs? (Arrow keys between tabs, Tab into panel) | Accessibility / JS | tab-menu | open |
+| Should a `disabled` tab be excluded from tab order with `tabindex="-1"`, or left in for discoverability? | Accessibility | tab-menu | open |
+| Does CSS `display: block` reliably override the `hidden` attribute across all browsers? | CSS / HTML | tab-menu | open |

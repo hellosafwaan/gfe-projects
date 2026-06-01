@@ -265,6 +265,34 @@ Use `0` when you need a non-interactive element (like `<li>`) to be keyboard-nav
 
 ---
 
+## ARIA Tablist Pattern
+
+Use for tab menus where clicking a tab reveals a panel.
+
+```html
+<div role="tablist" aria-label="Tabs">
+  <button role="tab" aria-selected="true"  aria-controls="account-panel">Account</button>
+  <button role="tab" aria-selected="false" aria-controls="security-panel">Security</button>
+</div>
+<div id="account-panel" role="tabpanel">...</div>
+<div id="security-panel" role="tabpanel" hidden>...</div>
+```
+
+JS must sync `aria-selected` on every switch:
+```js
+activeTab.setAttribute('aria-selected', 'false');
+nextTab.setAttribute('aria-selected', 'true');
+```
+
+- `role="tablist"` — the container of all tabs
+- `role="tab"` — each individual tab button
+- `role="tabpanel"` — each content panel
+- `aria-selected` — which tab is currently active (must be kept in sync by JS)
+- `aria-controls` — links each tab to its panel's `id`
+- `hidden` attribute on inactive panels — hides from accessibility tree as well as visually
+
+---
+
 ## Checklist for any overlay/modal
 
 - [ ] `role="dialog"` and `aria-modal="true"` on the overlay element

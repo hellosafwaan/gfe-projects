@@ -189,6 +189,40 @@ Always convert with `Array.from()` before using array methods.
 
 ---
 
+## data-* attributes and dataset
+
+Store custom metadata on HTML elements. Any attribute starting with `data-` is yours to name.
+
+```html
+<button data-tab="account">Account</button>
+<li data-value="public">Public</li>
+```
+
+Read in JS via `dataset` — the `data-` prefix becomes `dataset.` and the rest stays the same:
+
+```js
+button.dataset.tab    // → "account"
+item.dataset.value    // → "public"
+```
+
+Use to connect interactive elements to their targets without hardcoding IDs in JS. Common pattern: `data-tab` → `getElementById(value + "-panel")`.
+
+---
+
+## setAttribute / removeAttribute
+
+Set or remove HTML attributes on elements at runtime.
+
+```js
+element.setAttribute('aria-selected', 'true');
+element.setAttribute('hidden', '');
+element.removeAttribute('hidden');
+```
+
+Use for ARIA attributes that must stay in sync with visual state, and for toggling the `hidden` attribute to show/hide panels accessibly.
+
+---
+
 ## element.contains()
 
 Returns `true` if the argument is the element itself or a descendant. Used for outside-click detection.

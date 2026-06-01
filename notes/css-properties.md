@@ -77,6 +77,29 @@ box-shadow:
 
 Use whenever a border would interfere with the sizing of child elements (e.g. a thumb inside a sized track).
 
+### inset box-shadow — border drawn inside the element
+`inset` flips the shadow to render inside the element instead of outside. Looks like a border but doesn't affect the box model at all.
+
+```css
+box-shadow: inset 0 0 0 0.5px #e5e5e5;
+/* x  y  blur  spread  color */
+```
+
+Use when you need a very thin (0.5px) border that toggling on/off won't cause layout shift.
+
+### Invisible border trick — layout-shift-free active states
+Toggling a `border` on/off causes the element to resize (even with `box-sizing: border-box`, the content area shifts). Fix: give all states a transparent border so the space is always allocated.
+
+```css
+.tabs__trigger {
+  border: 1px solid transparent; /* always present, invisible */
+  padding: 9px 15px;             /* reduced by 1px for border */
+}
+.tabs__trigger--active {
+  border-color: #e5e5e5;         /* just changes colour, no size change */
+}
+```
+
 ---
 
 ## object-fit

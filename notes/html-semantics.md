@@ -117,6 +117,20 @@ Adding a new variant or size is one new class, not 20.
 
 ---
 
+## `nav` vs `div` for tab containers
+
+`<nav>` implies navigation — links that take the user to a different page or section. Don't use it for tab menus that swap content in-place.
+
+```html
+<!-- ❌ Wrong — tabs don't navigate anywhere -->
+<nav class="tabs__list">...</nav>
+
+<!-- ✅ Correct — div + ARIA role for semantics -->
+<div class="tabs__list" role="tablist" aria-label="Tabs">...</div>
+```
+
+---
+
 ## Custom checkbox pattern — visually hidden input + sibling span
 
 For custom-styled checkboxes where the native appearance needs to be fully replaced:
