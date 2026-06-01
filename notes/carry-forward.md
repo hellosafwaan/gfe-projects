@@ -13,7 +13,7 @@ Update Status to `answered` when done.
 | Can CSS `transition` animate both `left` and `right` simultaneously on the same element? | CSS transitions | toggle | open |
 | When does `:has()` have browser support issues worth worrying about? | CSS selectors | toggle | open |
 | What's the difference between `clip` and `clip-path` in visually hidden? | CSS properties | toggle, checkbox | open |
-| When to use `classList.toggle('open')` vs separate `.add`/`.remove`? | JavaScript DOM | navbar | open |
+| When to use `classList.toggle('open')` vs separate `.add`/`.remove`? | JavaScript DOM | navbar | answered |
 | How do you close a menu when the user clicks outside? | JavaScript DOM | navbar, modal | answered |
 | When exactly does `inline-flex` vs `flex` matter in real component usage? | CSS layout | badge, button | open |
 | When would you use `:focus` over `:focus-visible` in a real production component? | CSS selectors / a11y | checkbox, text-input | open |
@@ -29,3 +29,7 @@ Update Status to `answered` when done.
 | What's the correct keyboard navigation pattern for tabs? (Arrow keys between tabs, Tab into panel) | Accessibility / JS | tab-menu | open |
 | Should a `disabled` tab be excluded from tab order with `tabindex="-1"`, or left in for discoverability? | Accessibility | tab-menu | open |
 | Does CSS `display: block` reliably override the `hidden` attribute across all browsers? | CSS / HTML | tab-menu | open |
+| Is a color-only focus change (no outline) WCAG compliant for interactive elements? | Accessibility | tabs-component | open |
+| `overflow-x: auto` implicitly sets `overflow-y` — what other CSS properties have hidden implicit side effects? | CSS properties | tabs-component | open |
+| When is `border-bottom` + `margin-bottom: -1px` better than `::after` positioning for a tab indicator? | CSS patterns | tabs-component | open |
+| What is the correct roving tabindex pattern for keyboard navigation between tabs? | Accessibility / JS | tabs-component | open |

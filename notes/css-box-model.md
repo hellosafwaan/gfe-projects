@@ -128,3 +128,42 @@ overflow: auto;     /* scrollbars only when needed */
 **Common use:** `overflow: hidden` on a card clips children to the card's `border-radius` — no need to set `border-radius` on each child individually.
 
 Watch out: `overflow: hidden` also clips `box-shadow` and `position: absolute` children.
+
+### overflow-x: auto implicitly sets overflow-y
+
+CSS requires both axes to agree. If one is `auto` (or `hidden`/`scroll`), the other can't stay `visible` — it gets silently changed to `auto`.
+
+```css
+/* This: */
+overflow-x: auto;
+
+/* Is equivalent to: */
+overflow-x: auto;
+overflow-y: auto;  /* ← silently set by the browser */
+```
+
+**Real bug this causes:** A tab button with `margin-bottom: -1px` extends 1px below its container. If that container has `overflow-x: auto`, the browser treats it as a scroll container on both axes and clips the -1px extension — making the active indicator disappear.
+
+Fix: either remove `overflow-x: auto` when scroll isn't needed, or use the `::after` pseudo-element approach for the indicator (no negative margin required).
+
+---
+
+## Negative margin — extending an element beyond its container
+
+`margin-bottom: -1px` pulls the element 1px further down, making it visually overlap whatever is directly below.
+
+**Tab indicator overlap pattern:**
+```css
+/* Tab list has a 1px bottom border */
+.tabs__list { border-bottom: 1px solid #d4d4d4; }
+
+/* Each button extends 1px past the list's content area */
+.tabs__trigger { border-bottom: 1px solid transparent; margin-bottom: -1px; }
+
+/* Active button's 2px border sits on top of the 1px gray line */
+.tabs__trigger--active { border-bottom: 2px solid #4f46e5; }
+```
+
+The -1px margin makes the button's border align with the list's border — the active tab's colored border then visually replaces the gray line for its width.
+
+Note: only works when the container does NOT have `overflow-x: auto` (which would clip the extension).
