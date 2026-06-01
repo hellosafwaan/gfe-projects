@@ -15,6 +15,76 @@ body {
   box-sizing: border-box;
 }
 
+.container {
+  display:  flex;
+  justify-content: center;
+  padding: 200px 0px
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 300px;
+}
+
+.tabs__list {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid #d4d4d4;
+  align-self: stretch;
+}
+
+.tabs__trigger {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  padding: 1px 8px 11px 8px;
+  margin-bottom: -1px;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #525252;
+  cursor: pointer;
+}
+
+.tabs__trigger--active {
+  color: #4338ca;
+  border-bottom: 2px solid #4f46e5;
+}
+
+
+.tabs__trigger:focus-visible, .tabs__trigger:hover {
+  outline: none;
+  color: #171717;
+}
+
+.tabs__trigger--active:focus-visible, .tabs__trigger--active:hover {
+  outline: none ;
+  color: #3730a3;
+  border-bottom: 2px solid #3730a3;
+}
+
+
+.tabs__panels {
+  width: 100%;
+}
+
+.tabs__panel {
+  display: none;
+  font-family: "Noto Sans";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.tabs__panel--active {
+  display: block;
+}
+
 .credits {
   color: #777;
   position: fixed;
