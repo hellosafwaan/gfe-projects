@@ -15,6 +15,84 @@ body {
   box-sizing: border-box;
 }
 
+.container {
+  display:  flex;
+  justify-content: center;
+  padding: 200px 0px
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 300px;
+}
+
+.tabs__list {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.tabs__trigger {
+  height: 44px;
+  /* Remove the default style of a button */
+  appearance: none;
+  border: 1px solid transparent;
+  padding: 9px 17px;
+  background: transparent;
+  border-radius: 4px;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 24px;
+  font-weight: 500;
+  text-align: center;
+  font-family: inherit;
+  color: #525252;
+  cursor: pointer;
+}
+
+.tabs__trigger--active {
+  background-color: #ffffff;
+  color: #171717;
+  border: 1px solid #e5e5e5;
+  box-shadow: 
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.tabs__trigger:hover {
+  background-color: #fafafa;
+}
+
+.tabs__trigger:focus-visible {
+  outline: none;
+  background-color: #fafafa;
+  box-shadow: 0px 0px 0px 4px rgba(68, 76, 231, 0.12);
+}
+
+.tabs__trigger:disabled {
+  color: #a3a3a3;
+  cursor: not-allowed;
+}
+
+.tabs__panels {
+  width: 100%;
+}
+
+.tabs__panel {
+  display: none;
+  font-family: "Noto Sans";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.tabs__panel--active {
+  display: block;
+}
+
 .credits {
   color: #777;
   position: fixed;
